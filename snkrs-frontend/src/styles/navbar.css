@@ -1,0 +1,74 @@
+
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap');
+
+
+body{
+    font-family: Roboto, sans-serif;
+}
+
+.navbar-nav{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+font-size: 1.14rem;
+
+}
+
+.navbar-nav .nav-item {
+    position: relative;
+  }
+  
+  .navbar-nav .nav-link {
+    position: relative;
+  }
+  
+  .navbar-nav .nav-link::before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0.12rem;
+    background-color: black;
+    bottom: -1px;
+    left: 0;
+    transition: width 0.5s ease;
+  }
+  
+  .navbar-nav .nav-link:hover::before {
+    width: 100%;
+  }
+  
+
+  .carticon{
+
+    color: black;
+  }
+
+
+  .bi-bag, .bi-search{
+    
+cursor: pointer;
+font-size: 1.5rem;
+float: right;
+margin-right: 2%;
+
+  }
+
+  .iconsSM{
+
+
+  }
+  @media (max-width: 992px) {
+    /* Your CSS rules go here */
+    /* .bi-search{
+        margin-right: 70%;
+
+
+} */
+.nav-item{
+ margin-left: 86%;
+ font-size: 1rem;
+}
+
+    
+  }
+       

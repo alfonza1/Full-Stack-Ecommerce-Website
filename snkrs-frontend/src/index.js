@@ -3,11 +3,27 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
+import 'bootstrap/dist/js/bootstrap.bundle.min.js'; // Import Bootstrap JS
+import HomePage from './pages/HomePage';
+import 'bootstrap-icons/font/bootstrap-icons.css'; // Import the Bootstrap Icons CSS
+
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route
+} from "react-router-dom";
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+  <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+  
+      </Routes>
+    </Router>
   </React.StrictMode>
 );
 
