@@ -19,7 +19,7 @@ public class Sneaker {
 
     @NotNull
     @Column(name = "price")
-    private int price;
+    private double price;
 
     @NotNull
     @Column(name = "sneaker_photo")
@@ -71,11 +71,11 @@ public class Sneaker {
         this.sneakerName = sneakerName;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 

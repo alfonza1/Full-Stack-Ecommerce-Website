@@ -44,9 +44,9 @@ const Navbar = () => {
 
  
     </div>
-    
+   
     <i className="bi bi-bag d-none d-lg-inline bag-icon"></i> {/* Shown only on screens larger than 992px */}
-    <i class="bi bi-search d-none d-lg-inline search-icon"></i>
+    <i className="bi bi-search d-none d-lg-inline search-icon"></i>
   </div>
   
 </nav>

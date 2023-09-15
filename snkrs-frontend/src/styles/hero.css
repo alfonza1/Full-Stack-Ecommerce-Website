@@ -1,0 +1,57 @@
+/* Common styles for all hero-containers */
+.hero-container {
+  height: 100vh; /* common height */
+  width: 100%; /* common width */
+  background-size: cover; /* cover the whole container */
+  background-position: center; /* center the image */
+  background-repeat: no-repeat; /* do not repeat the image */
+  color: white;
+}
+
+/* Specific styles */
+.hero-container.snkrhero1 {
+  background-image: url("../assets/snkr.jpg");
+  background-size: 95% 90%; /* make it 90% of the container */
+}
+
+.hero-container.snkrhero2 {
+  background-image: url("../assets/snkrhero3.jpg");
+  background-size: 95% 90%; /* make it 90% of the container */
+}
+
+.hero-container.snkrhero3 {
+  background-image: url("https://www.ballerstatus.com/wp-content/uploads/2021/05/Maison_Margiela_x_Reebok_Classic_Leather_Tabi_grey_1920x1080.jpg");
+  background-size: 95% 90%; /* make it 90% of the container */
+}
+
+.hero-container.snkrhero4 {
+  background-image: url("../assets/snkrhero22.jpg");
+  background-size: 95% 90%; /* make it 90% of the container */
+}
+
+.dot {
+  position: absolute;
+  top: 2000px;
+  right: 500px;
+}
+.pagination {
+  position: absolute;
+  bottom: 17px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 15px;
+}
+
+.pagedot {
+  width: 11px;
+  height: 11px;
+  background-color: gray;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.pagedot.active {
+  background-color: black;
+}

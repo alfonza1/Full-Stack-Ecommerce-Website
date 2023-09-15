@@ -52,11 +52,32 @@ float: right;
 margin-right: 2%;
 
   }
-
-  .iconsSM{
-
+  .bi-bag{
+    position: relative;
+    left: -1%;
 
   }
+
+  .search-icon{
+position: relative;
+left: -1.5%;
+
+  }
+  .navbar{
+    position: fixed;
+    width: 100%;
+    z-index: 99;
+   }
+
+   .navbar-brand{
+margin-left: 2%;
+
+   }
+
+
+
+
+
   @media (max-width: 992px) {
     /* Your CSS rules go here */
     /* .bi-search{
@@ -64,11 +85,12 @@ margin-right: 2%;
 
 
 } */
+.navbar-brand{
+  margin-left: 10%;
+  
+         }
 .nav-item{
  margin-left: 86%;
  font-size: 1rem;
-}
+}}
 
-    
-  }
-       

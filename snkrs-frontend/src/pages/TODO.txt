@@ -1,0 +1,3 @@
+fix nav bar search and shopping cart when smaller
+
+fix hero images when smaller 50vh is clean can test though
