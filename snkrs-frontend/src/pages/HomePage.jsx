@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
+import HeroDemographics from '../components/HeroDemographics';
 
 
 const HomePage = () => {
@@ -8,6 +9,7 @@ const HomePage = () => {
     <div>
 <Navbar/>
 <Hero/>
+<HeroDemographics/>
     </div>
   );
 };

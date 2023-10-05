@@ -1,0 +1,77 @@
+.card-list {
+  display: flex;
+  flex-wrap: wrap;
+  overflow-x: auto; 
+}
+
+.card {
+  flex: 1; 
+  margin: 1rem; 
+  border: none; 
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  font-size: 1.21rem;
+  margin-top: 100px;
+}
+
+
+.card-text {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.card-text::before {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0.12rem;
+  background-color: black;
+  bottom: -1px;
+  left: 0;
+  transition: width 0.5s ease;
+}
+
+.card-text:hover::before,
+.hero-image:hover + .card-body .card-text::before {
+  width: 100%;
+}
+
+.demtextdiv {
+  text-decoration: none;
+  color: inherit; /* This will make the link use the parent's color or adjust to your preferred color */
+}
+
+.demtextdiv:hover, 
+.demtextdiv:focus {
+  text-decoration: none;
+  color: inherit; /* Adjust if you want a different hover color */
+}
+
+
+@media (max-width: 767px) { 
+  .card {
+    font-size: 1rem; 
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) { 
+  .card {
+    font-size: 1.1rem;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) { 
+  .card {
+    font-size: 1.2rem;
+  }
+}
+
+@media (min-width: 1200px) { 
+  .card {
+    font-size: 1.3rem; 
+  }
+}

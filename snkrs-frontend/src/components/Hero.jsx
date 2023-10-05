@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../styles/hero.css';  // Make sure the path is correct
+import '../styles/Hero.css';  // Make sure the path is correct
 
 class Hero extends Component {
   constructor(props) {
