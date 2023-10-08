@@ -1,96 +1,81 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap");
 
-  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap');
-
-
-body{
-    font-family: Roboto, sans-serif;
+body {
+  font-family: Roboto, sans-serif;
 }
 
-.navbar-nav{
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-font-size: 1.14rem;
-
+.navbar-nav {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  font-size: 1.14rem;
 }
 
 .navbar-nav .nav-item {
-    position: relative;
-  }
-  
-  .navbar-nav .nav-link {
-    position: relative;
-  }
-  
-  .navbar-nav .nav-link::before {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 0.12rem;
-    background-color: black;
-    bottom: -1px;
-    left: 0;
-    transition: width 0.5s ease;
-  }
-  
-  .navbar-nav .nav-link:hover::before {
-    width: 100%;
-  }
-  
+  position: relative;
+}
 
-  .carticon{
+.navbar-nav .nav-link {
+  position: relative;
+}
 
-    color: black;
-  }
+.navbar-nav .nav-link::before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0.12rem;
+  background-color: black;
+  bottom: -1px;
+  left: 0;
+  transition: width 0.5s ease;
+}
 
+.navbar-nav .nav-link:hover::before {
+  width: 100%;
+}
 
-  .bi-bag, .bi-search{
-    
-cursor: pointer;
-font-size: 1.5rem;
-float: right;
-margin-right: 2%;
+.carticon {
+  color: black;
+}
 
-  }
-  .bi-bag{
-    position: relative;
-    left: -1%;
+.bi-bag,
+.bi-search {
+  cursor: pointer;
+  font-size: 1.5rem;
+  float: right;
+  margin-right: 2%;
+}
+.bi-bag {
+  position: relative;
+  left: -1%;
+}
 
-  }
+.search-icon {
+  position: relative;
+  left: -1.5%;
+}
+.navbar {
+  position: fixed;
+  width: 100%;
+  z-index: 99;
+}
 
-  .search-icon{
-position: relative;
-left: -1.5%;
+.navbar-brand {
+  margin-left: 2%;
+}
 
-  }
-  .navbar{
-    position: fixed;
-    width: 100%;
-    z-index: 99;
-   }
-
-   .navbar-brand{
-margin-left: 2%;
-
-   }
-
-
-
-
-
-  @media (max-width: 992px) {
-    /* Your CSS rules go here */
-    /* .bi-search{
+@media (max-width: 992px) {
+  /* Your CSS rules go here */
+  /* .bi-search{
         margin-right: 70%;
 
 
 } */
-.navbar-brand{
-  margin-left: 10%;
-  
-         }
-.nav-item{
- margin-left: 86%;
- font-size: 1rem;
-}}
-
+  .navbar-brand {
+    margin-left: 10%;
+  }
+  .nav-item {
+    margin-left: 86%;
+    font-size: 1rem;
+  }
+}

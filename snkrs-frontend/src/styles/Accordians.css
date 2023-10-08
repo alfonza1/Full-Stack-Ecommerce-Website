@@ -1,0 +1,32 @@
+.popularaccordian{
+    position: relative;
+top: 200px;
+width: 300px; /* You can adjust the width value as needed */
+
+} 
+
+
+/* Custom CSS to change checkbox border color */
+.form-check-input[type="checkbox"] {
+  border-color: rgb(139, 139, 139); /* Change this to your desired border color */
+}
+
+/* Custom CSS to change the border color of checked checkboxes */
+.form-check-input[type="checkbox"]:checked {
+  border-color: green; /* Change this to your desired border color for checked checkboxes */
+}
+
+
+
+.accordianTitle{
+
+  font-weight: bolder;
+  color: rgb(44, 44, 44);
+  font-size: 1.6rem;
+  margin-left: 1rem; /* Ensure space between title and link */
+  position: relative;
+  top: 160px;
+  z-index: 999;
+}
+
+

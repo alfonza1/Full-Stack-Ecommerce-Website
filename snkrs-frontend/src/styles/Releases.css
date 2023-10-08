@@ -1,0 +1,15 @@
+.releasecards{
+
+margin-top: 140px;
+margin-bottom: 100px;
+
+}
+
+/* // dont forge acc */
+
+/* CSS */
+.card-img-custom {
+    height: 200px; /* Adjust the height value as needed to make the image longer */
+    object-fit: cover; /* Maintain aspect ratio and cover the container */
+  }
+  

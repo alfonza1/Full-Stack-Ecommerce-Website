@@ -1,3 +1,7 @@
 fix nav bar search and shopping cart when smaller
 
 fix hero images when smaller 50vh is clean can test though
+
+show only 6 popular releases when screen is smaller
+
+fix footer to be lower even with no data

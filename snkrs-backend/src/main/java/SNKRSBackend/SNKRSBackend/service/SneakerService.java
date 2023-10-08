@@ -1,7 +1,7 @@
 package SNKRSBackend.SNKRSBackend.service;
 
-import SNKRSBackend.SNKRSBackend.enums.Person;
-import SNKRSBackend.SNKRSBackend.enums.SneakerBrand;
+import SNKRSBackend.SNKRSBackend.enums.Demographic;
+import SNKRSBackend.SNKRSBackend.enums.Brand;
 import SNKRSBackend.SNKRSBackend.model.Sneaker;
 import SNKRSBackend.SNKRSBackend.repository.SneakerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,12 +32,12 @@ public class SneakerService {
         sneakerRepository.deleteById(id);
     }
 
-    public List<Sneaker> getSneakersByBrand(SneakerBrand brand) {
-        return sneakerRepository.findBySneakerBrand(brand);
+    public List<Sneaker> getSneakersByBrand(Brand brand) {
+        return sneakerRepository.findSneakersByBrand(brand);
     }
 
-    public List<Sneaker> getSneakersByPersonType(Person personType) {
-        return sneakerRepository.findByPerson(personType);
+    public List<Sneaker> getSneakersByPersonType(Demographic personType) {
+        return sneakerRepository.findSneakersByDemographic(personType);
     }
 
     public List<Sneaker> getPopularSneakers() {

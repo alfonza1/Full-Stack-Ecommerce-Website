@@ -1,7 +1,8 @@
 package SNKRSBackend.SNKRSBackend.controller;
 
-import SNKRSBackend.SNKRSBackend.enums.Person;
-import SNKRSBackend.SNKRSBackend.enums.SneakerBrand;
+import SNKRSBackend.SNKRSBackend.enums.Demographic;
+import SNKRSBackend.SNKRSBackend.enums.Brand;
+import SNKRSBackend.SNKRSBackend.enums.ProductType;
 import SNKRSBackend.SNKRSBackend.model.Sneaker;
 import SNKRSBackend.SNKRSBackend.service.SneakerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,9 +10,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/sneakers")
 public class SneakerController {
@@ -53,13 +57,13 @@ public class SneakerController {
     }
 
     @GetMapping("/brand/{brand}")
-    public ResponseEntity<List<Sneaker>> getSneakersByBrand(@PathVariable SneakerBrand brand) {
+    public ResponseEntity<List<Sneaker>> getSneakersByBrand(@PathVariable Brand brand) {
         return new ResponseEntity<>(sneakerService.getSneakersByBrand(brand), HttpStatus.OK);
     }
 
-    @GetMapping("/personType/{personType}")
-    public ResponseEntity<List<Sneaker>> getSneakersByPersonType(@PathVariable Person personType) {
-        return new ResponseEntity<>(sneakerService.getSneakersByPersonType(personType), HttpStatus.OK);
+    @GetMapping("/demographic/{demographic}")
+    public ResponseEntity<List<Sneaker>> getSneakersByDemographic(@PathVariable Demographic demographic) {
+        return new ResponseEntity<>(sneakerService.getSneakersByPersonType(demographic), HttpStatus.OK);
     }
 
     @GetMapping("/popular")
@@ -76,4 +80,29 @@ public class SneakerController {
     public ResponseEntity<List<Sneaker>> getOnSaleSneakers() {
         return new ResponseEntity<>(sneakerService.getOnSaleSneakers(), HttpStatus.OK);
     }
+    @GetMapping("/demographics")
+    public ResponseEntity<List<Demographic>> getAllDemographics() {
+        List<Demographic> demographics = Arrays.asList(Demographic.values());
+        return new ResponseEntity<>(demographics, HttpStatus.OK);
+    }
+
+    @GetMapping("/brands")
+    public ResponseEntity<List<Brand>> getAllBrands() {
+        List<Brand> brands = Arrays.asList(Brand.values());
+        return new ResponseEntity<>(brands, HttpStatus.OK);
+    }
+
+    @GetMapping("/producttypes")
+    public ResponseEntity<List<String>> getAllProductTypes() {
+        List<String> productTypes = new ArrayList<>();
+
+        for (ProductType type : ProductType.values()) {
+            productTypes.add(type.toString());
+        }
+
+        return new ResponseEntity<>(productTypes, HttpStatus.OK);
+    }
+
+
+
 }

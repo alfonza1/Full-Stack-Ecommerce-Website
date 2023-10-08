@@ -1,0 +1,34 @@
+.popular-releases-container {
+  padding: 1rem 0; /* Reduced top and bottom padding */
+  margin-top: 100px;
+  margin-bottom: 150px;
+
+}
+
+
+.sneaker-cards {
+  row-gap: 0.5rem; /* Reduced vertical spacing between rows */
+}
+
+.popularcard {
+  margin: 0 auto; /* Centering cards horizontally */
+}
+
+
+.popularcard-body h5 {
+  font-size: 1rem;
+  font-weight: bold;
+}
+.popularReleasesTitle{
+font-weight: bolder;
+color: rgb(44, 44, 44);
+font-size: 1.5rem;
+margin-left: 1rem; /* Ensure space between title and link */
+
+}
+
+.viewa{
+text-decoration: none;
+color: rgb(58, 58, 58);
+font-size: 18px;
+}

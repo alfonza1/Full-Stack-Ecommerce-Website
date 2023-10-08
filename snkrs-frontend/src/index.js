@@ -6,6 +6,8 @@ import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'; // Import Bootstrap JS
 import HomePage from './pages/HomePage';
+import ReleasesData from './pages/ReleasesData';
+
 import 'bootstrap-icons/font/bootstrap-icons.css'; // Import the Bootstrap Icons CSS
 
 import {
@@ -13,6 +15,7 @@ import {
   Routes,
   Route
 } from "react-router-dom";
+import PopularReleasesPage from './pages/ReleasesData';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -21,7 +24,12 @@ root.render(
   <Router>
       <Routes>
         <Route path="/" element={<HomePage />} />
-  
+        <Route path="/popular" element={<ReleasesData />} />
+        <Route path="/men" element={<ReleasesData />} />
+        <Route path="/women" element={<ReleasesData />} />
+        <Route path="/kids" element={<ReleasesData />} />
+        <Route path="/newArrivals" element={<ReleasesData />} />
+
       </Routes>
     </Router>
   </React.StrictMode>

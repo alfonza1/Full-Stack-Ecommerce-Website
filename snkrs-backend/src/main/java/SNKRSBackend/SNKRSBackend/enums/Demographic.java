@@ -1,6 +1,6 @@
 package SNKRSBackend.SNKRSBackend.enums;
 
-public enum Person {
+public enum Demographic {
     MEN,
     WOMEN,
     KID

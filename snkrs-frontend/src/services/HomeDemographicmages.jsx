@@ -1,4 +1,4 @@
-class DemographicHeroImages {
+class HomeDemographicmages {
     static categories = [
       {
         demographic: 'Men',
@@ -42,5 +42,5 @@ class DemographicHeroImages {
     }
   }
   
-  export default DemographicHeroImages;
+  export default HomeDemographicmages;
   

@@ -1,7 +1,9 @@
 import React from 'react';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
-import HeroDemographics from '../components/HeroDemographics';
+import HomeDemographics from '../components/HomeDemographics';
+import NewArrivals from '../components/HomeNewArrivals';
+import Footer from '../components/Footer';
 
 
 const HomePage = () => {
@@ -9,7 +11,9 @@ const HomePage = () => {
     <div>
 <Navbar/>
 <Hero/>
-<HeroDemographics/>
+<HomeDemographics/>
+<NewArrivals/>
+<Footer/>
     </div>
   );
 };

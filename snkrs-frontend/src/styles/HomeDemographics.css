@@ -14,17 +14,20 @@
   align-items: center;
   text-align: center;
   font-size: 1.21rem;
-  margin-top: 100px;
 }
 
+.demographicCards{
+  margin-top: 100px;
 
-.card-text {
+}
+
+.demographicName {
   position: relative;
   display: inline-block;
   cursor: pointer;
 }
 
-.card-text::before {
+.demographicName::before {
   content: '';
   position: absolute;
   width: 0;
@@ -35,8 +38,8 @@
   transition: width 0.5s ease;
 }
 
-.card-text:hover::before,
-.hero-image:hover + .card-body .card-text::before {
+.demographicName:hover::before,
+.hero-image:hover + .card-body .demographicName::before {
   width: 100%;
 }
 

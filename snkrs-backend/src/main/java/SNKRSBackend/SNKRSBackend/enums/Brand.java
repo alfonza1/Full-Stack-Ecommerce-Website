@@ -1,6 +1,6 @@
 package SNKRSBackend.SNKRSBackend.enums;
 
-public enum SneakerBrand {
+public enum Brand {
     ADIDAS,
     NIKE,
     PUMA,
