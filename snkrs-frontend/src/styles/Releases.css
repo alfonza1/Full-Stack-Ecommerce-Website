@@ -13,3 +13,8 @@ margin-bottom: 100px;
     object-fit: cover; /* Maintain aspect ratio and cover the container */
   }
   
+
+  .paginationbar{
+    position: relative;
+  }
+ 

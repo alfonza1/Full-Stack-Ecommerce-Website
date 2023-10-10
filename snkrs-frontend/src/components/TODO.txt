@@ -1,0 +1,11 @@
+fix nav bar search and shopping cart when smaller
+
+fix hero images when smaller 50vh is clean can test though
+
+show only 6 popular releases when screen is smaller... may not need 
+
+fix footer to be lower even with no data
+
+Add on sale page 
+
+fix releases page when screen is smaller

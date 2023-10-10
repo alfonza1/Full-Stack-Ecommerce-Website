@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../styles/Releases.css";
 import Accordians from "./Accordians";
 import Axios from "axios";
+import { Link } from "react-router-dom";
 
 const Releases = () => {
   const [sneakers, setSneakers] = useState([]);
@@ -9,7 +10,7 @@ const Releases = () => {
   const [selectedProductType, setSelectedProductType] = useState("All");
   const [selectedBrand, setSelectedBrand] = useState("All");
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 10; // You can adjust this number based on your requirements
+  const itemsPerPage = 16; // You can adjust this number based on your requirements
 
   // ADD THE STUFF TO THE API AND FIX PAGINATION
 
@@ -80,6 +81,7 @@ const Releases = () => {
                 className="col-12 col-xxl-3 col-xl-4 col-lg-6 col-md-6 col-sm-12"
                 key={sneaker.id}
               >
+                  <Link to={`/products/${sneaker.id}`} style={{ textDecoration: 'none' }}>
                 <div className="card" style={{ width: "15rem" }}>
                   <img
                     src={sneaker.photo}
@@ -93,12 +95,13 @@ const Releases = () => {
                     <p className="card-text">${sneaker.price}</p>
                   </div>
                 </div>
+                </Link>
               </div>
             ))}
           </div>
         </div>
       </div>
-      <nav aria-label="Page navigation example">
+      <nav aria-label="Page navigation example" className="paginationbar">
         <ul className="pagination">
           <li className={`page-item ${currentPage === 1 ? "disabled" : ""}`}>
             <a

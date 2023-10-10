@@ -19,7 +19,9 @@ const Navbar = () => {
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
+      <li class="nav-item me-4">
+          <a class="nav-link active" aria-current="page" href="/newarrivals">New Arrivals</a>
+        </li>
         <li class="nav-item me-4">
           <a class="nav-link active" aria-current="page" href="/popular">Popular Releases</a>
         </li>

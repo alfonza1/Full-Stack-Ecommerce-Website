@@ -7,8 +7,8 @@ import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'; // Import Bootstrap JS
 import HomePage from './pages/HomePage';
 import ReleasesData from './pages/ReleasesData';
-
 import 'bootstrap-icons/font/bootstrap-icons.css'; // Import the Bootstrap Icons CSS
+import ProductsPage from './pages/ProductsPage';
 
 import {
   BrowserRouter as Router,
@@ -29,6 +29,7 @@ root.render(
         <Route path="/women" element={<ReleasesData />} />
         <Route path="/kids" element={<ReleasesData />} />
         <Route path="/newArrivals" element={<ReleasesData />} />
+        <Route path="/products/:id" element={<ProductsPage />} />
 
       </Routes>
     </Router>
