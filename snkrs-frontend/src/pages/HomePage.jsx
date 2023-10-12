@@ -9,11 +9,9 @@ import Footer from '../components/Footer';
 const HomePage = () => {
   return (
     <div>
-<Navbar/>
 <Hero/>
 <HomeDemographics/>
 <NewArrivals/>
-<Footer/>
     </div>
   );
 };

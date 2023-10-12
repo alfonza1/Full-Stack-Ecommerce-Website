@@ -26,7 +26,7 @@ width: 300px; /* You can adjust the width value as needed */
   margin-left: 1rem; /* Ensure space between title and link */
   position: relative;
   top: 160px;
-  z-index: 999;
+  z-index: 2;
 }
 
 

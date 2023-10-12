@@ -1,30 +1,56 @@
-import React, { useState, useEffect } from 'react';
-import '../styles/HomeNewArrivals.css';
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import "../styles/HomeNewArrivals.css";
+import { Link, useLocation } from "react-router-dom";
 
 function NewArrivals() {
   const [sneakers, setSneakers] = useState([]);
-  const [loading, setLoading] = useState(true); // Add a loading state
+  const [loading, setLoading] = useState(true);
+  const location = useLocation();
 
   useEffect(() => {
-    fetch('http://localhost:8080/sneakers/newArrivals')
-      .then(response => response.json())
-      .then(data => {
-        setSneakers(data.slice(0, 8)); // take only the first 8 sneakers
-        setLoading(false); // Set loading to false when data is loaded
-      })
-      .catch(error => {
-        console.error('Error fetching new arrivals:', error);
-        setLoading(false); // Handle errors and set loading to false
-      });
-  }, []);
+    let endpoint = "http://localhost:8080/sneakers/newArrivals";
+    if (location.pathname.startsWith("/products/")) {
+      endpoint = "http://localhost:8080/sneakers/popular";
+    }
 
+    fetch(endpoint)
+      .then((response) => response.json())
+      .then((data) => {
+        setSneakers(data.slice(0, 8));
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+        setLoading(false);
+      });
+  }, [location.pathname]);
+
+  const title = location.pathname.startsWith("/products/")
+    ? "RECOMMENDED FOR YOU"
+    : "NEW ARRIVALS";
+
+  // Conditionally set the "View All" link based on the pathname
+  const viewAllLink = location.pathname.startsWith("/products/")
+    ? "/popular"
+    : "/newarrivals";
+    const scrollToTop = () => {
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 0); // Set the delay to 250 milliseconds (0.25 seconds)
+    };
+  
   return (
     <div className="container popular-releases-container">
       <div className="d-flex justify-content-between align-items-center">
-        <h3 className='popularReleasesTitle'>NEW ARRIVALS</h3>
-        <Link to="/newarrivals" className='viewa'>
-          <span className="view-all-text">View All <i className="bi bi-arrow-right-short"></i></span>
+        <h3 className="popularReleasesTitle">{title}</h3>
+        <Link
+          to={viewAllLink}
+          className="viewa"
+          onClick={scrollToTop} // Add this onClick handler
+        >
+          <span className="view-all-text">
+            View All <i className="bi bi-arrow-right-short"></i>
+          </span>
         </Link>
       </div>
 
@@ -33,10 +59,21 @@ function NewArrivals() {
       ) : (
         <div className="row sneaker-cards">
           {sneakers.map((sneaker, index) => (
-            <div className='col-12 col-xxl-3 col-xl-4 col-lg-4 col-md-6 col-sm-6' key={index}>
-              <Link to={`/products/${sneaker.id}`} style={{ textDecoration: 'none' }}>
+            <div
+              className="col-12 col-xxl-3 col-xl-4 col-lg-4 col-md-6 col-sm-6"
+              key={index}
+            >
+              <Link
+                to={`/products/${sneaker.id}`}
+                style={{ textDecoration: "none" }}
+                onClick={scrollToTop}
+              >
                 <div className="card" style={{ width: "18rem" }}>
-                  <img src={sneaker.photo} className="card-img-top" alt={sneaker.sneakerName} />
+                  <img
+                    src={sneaker.photo}
+                    className="card-img-top"
+                    alt={sneaker.sneakerName}
+                  />
                   <div className="card-body">
                     <p className="card-text">{sneaker.name}</p>
                   </div>

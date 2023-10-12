@@ -63,6 +63,7 @@ const Releases = () => {
     indexOfFirstSneaker,
     indexOfLastSneaker
   );
+ 
 
   return (
     <div className="container">
@@ -81,20 +82,23 @@ const Releases = () => {
                 className="col-12 col-xxl-3 col-xl-4 col-lg-6 col-md-6 col-sm-12"
                 key={sneaker.id}
               >
-                  <Link to={`/products/${sneaker.id}`} style={{ textDecoration: 'none' }}>
-                <div className="card" style={{ width: "15rem" }}>
-                  <img
-                    src={sneaker.photo}
-                    className="card-img-top card-img-custom"
-                    alt={sneaker.name}
-                  />
+                <Link
+                  to={`/products/${sneaker.id}`}
+                  style={{ textDecoration: "none" }}
+                >
+                  <div className="card" style={{ width: "15rem" }}>
+                    <img
+                      src={sneaker.photo}
+                      className="card-img-top card-img-custom"
+                      alt={sneaker.name}
+                    />
 
-                  <div className="card-body">
-                    <h5 className="card-title">{sneaker.name}</h5>
-                    <p className="card-text">{sneaker.brand}</p>
-                    <p className="card-text">${sneaker.price}</p>
+                    <div className="card-body">
+                      <h5 className="card-title">{sneaker.name}</h5>
+                      <p className="card-text">{sneaker.brand}</p>
+                      <p className="card-text">${sneaker.price}</p>
+                    </div>
                   </div>
-                </div>
                 </Link>
               </div>
             ))}

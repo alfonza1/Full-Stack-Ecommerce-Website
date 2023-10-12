@@ -3,42 +3,127 @@ import { useParams } from "react-router-dom";
 import Axios from "axios";
 import "../styles/ProductPage.css";
 
-const ProductPage = () => {
-  const { id } = useParams(); // Use useParams to get the id from the URL
+const ProductPage = ({ addToCart }) => {
+  const { id } = useParams();
   const [sneaker, setSneaker] = useState({});
   const [selectedSize, setSelectedSize] = useState("6");
+  const [showAlert, setShowAlert] = useState(false);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false); // State for button disabled state
 
   useEffect(() => {
-    Axios.get(`http://localhost:8080/sneakers/${id}`) // Use the id from useParams
+    Axios.get(`http://localhost:8080/sneakers/${id}`)
       .then((response) => {
         setSneaker(response.data);
       })
       .catch((error) => {
         console.error("Error fetching sneaker details:", error);
       });
-  }, [id]); // Add id to the dependency array to fetch data when it changes
+  }, [id]);
+
+  useEffect(() => {
+    scrollToTop();
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const sizeArray = [
+    5,
+    5.5,
+    "6",
+    "6.5",
+    "7",
+    "7.5",
+    "8",
+    "8.5",
+    "9",
+    "9.5",
+    "10",
+    "10.5",
+    "11",
+    "11.5",
+    "12",
+    "12.5",
+    "13",
+    "13.5",
+    "14",
+  ];
+
+  const handleSizeClick = (size) => {
+    setSelectedSize(size);
+  };
+
+  const handleAddToCart = () => {
+    const selectedItem = {
+      ...sneaker,
+      selectedSize: selectedSize,
+    };
+    addToCart(selectedItem);
+    setShowAlert(true);
+    setIsButtonDisabled(true);
+
+    // Hide the alert after 3 seconds
+    setTimeout(() => {
+      setShowAlert(false);
+    }, 3000);
+
+    setTimeout(() => {
+      setIsButtonDisabled(false);
+    }, 3000);
+  };
 
   return (
-    <div>
-      {/* Display sneaker details */}
-      <h2>{sneaker.name}</h2>
-      <img src={sneaker.photo} alt={sneaker.name} />
-      <p>{sneaker.brand}</p>
-      <p>${sneaker.price}</p>
-      {/* Sizes */}
-      <div>
-        {["6", "7", "8", "9", "10", "11", "12", "13", "14"].map((size) => (
-          <button
-            key={size}
-            className={selectedSize === size ? "selected-size" : ""}
-            onClick={() => setSelectedSize(size)}
-          >
-            {size}
-          </button>
-        ))}
+    <div className="container-fluid containerproductpage">
+      <div className="row">
+        {/* Navigation and images */}
+        <div className="col-12 col-xl-6 image-container">
+          <img
+            src={sneaker.photo}
+            alt={sneaker.name}
+            className="sneaker-imagee"
+          />
+          {/* Add your left and right arrows here */}
+        </div>
+
+        <div className="col-12 col-xl-6 sneaker-details">
+          <h3>{sneaker.name}</h3>
+          <p>{sneaker.demographic}</p>
+          <p>${sneaker.price}</p>
+
+          <h4>SELECT US SIZE</h4>
+          <div className="size-selector">
+            {sizeArray.map((size) => (
+              <button
+                key={size}
+                className={`size-btn ${
+                  selectedSize === size ? "selected" : ""
+                }`}
+                onClick={() => handleSizeClick(size)}
+              >
+                {size}
+              </button>
+            ))}
+          </div>
+
+          <div >
+            <button
+              className="add-to-cart-btn "
+              onClick={handleAddToCart}
+              disabled={isButtonDisabled}
+            >
+              Add To Cart
+            </button>
+            {/* Add other buttons and details as per your requirements */}
+            {showAlert && (
+              <div className="alert alert-dark mt-2 col-5">
+                Added to Cart Successfully
+              </div>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );
 };
-
 export default ProductPage;

@@ -2,16 +2,14 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Accordians from "../components/Accordians";
-import Releases from "../components/Releases";
+import SneakerCards from "../components/SneakerCards";
 
-const ReleasesData = () => {
+const SneakerCardsData = () => {
   return (
     <div>
-      <Navbar />
-      <Releases />
-      <Footer/>
+      <SneakerCards />
     </div>
   );
 };
 
-export default ReleasesData;
+export default SneakerCardsData;

@@ -4,6 +4,17 @@ body {
   font-family: Roboto, sans-serif;
 }
 
+.offcanvas-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1030; /* Ensure it's below the offcanvas but above everything else */
+  background-color: rgba(0, 0, 0, 0.5); /* semi-transparent gray */
+}
+
+
 .navbar-nav {
   margin-left: auto;
   margin-right: auto;

@@ -1,0 +1,122 @@
+.product-page-container {
+  display: flex;
+  padding: 20px;
+}
+
+.containerproductpage {
+  position: relative;
+  max-width: 1400px;
+  margin: auto;
+}
+
+.sneaker-imagee {
+  position: relative;
+  top: 50px;
+  max-width: 100%;
+  height: 400px;
+
+}
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.size-selector {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(55px, 1fr));
+  gap: 1rem;
+}
+
+.sneaker-details {
+  padding: 3em 2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.size-selector {
+  display: grid;
+  grid-template-columns: repeat(6, 0.09fr);
+  gap: 5px; /* Reduced space between each button */
+}
+
+.size-btn {
+  border: 1px solid black;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  text-align: center;
+  
+  width: 55px; 
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+}
+
+
+.size-btn:hover {
+  background-color: #ccc7c7;
+}
+
+.selected-size {
+  background-color: black;
+  color: white;
+}
+
+.add-to-cart-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-top: 20px;
+  background-color: rgb(27, 27, 27);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.add-to-cart-btn:hover {
+  background-color: rgb(139, 138, 138);
+}
+.selected {
+  background-color: black;
+  color: white;
+}
+
+
+
+@media screen and (max-width: 1200px) {
+  .image-container {
+      margin-bottom: 60px;
+
+  }
+  .containerproductpage {
+    position: relative;
+    top: 30px;  }
+    .sneaker-imagee {
+      position: relative;
+      top: 50px;
+      max-width: 100%;
+      height: 400px;
+    
+    }
+}
+
+
+@media screen and (min-width: 1400px) {
+  .containerproductpage {
+    position: relative;
+    top: 120px;  
+    margin-bottom: 250px;
+
+  }
+  .sneaker-imagee {
+    position: relative;
+    top: 50px;
+    max-width: 100%;
+    height: 500px;
+  
+  }
+
+  
+}
