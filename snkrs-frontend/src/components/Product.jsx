@@ -11,7 +11,7 @@ const ProductPage = ({ addToCart }) => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(false); // State for button disabled state
 
   useEffect(() => {
-    Axios.get(`http://localhost:8080/sneakers/${id}`)
+    Axios.get(`http://localhost:8080/products/${id}`)
       .then((response) => {
         setSneaker(response.data);
       })
@@ -28,7 +28,7 @@ const ProductPage = ({ addToCart }) => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const sizeArray = [
+  const shoeSizeArray = [
     5,
     5.5,
     "6",
@@ -50,28 +50,47 @@ const ProductPage = ({ addToCart }) => {
     "14",
   ];
 
+  const clothSizeArray = ["S", "M", "L", "XL", "XXL"];
+
+  const getCurrentSizeArray = () => {
+    if (sneaker.productType === "ACCESSORY") {
+      return [];
+    } else if (sneaker.productType === "CLOTH") {
+      return clothSizeArray;
+    } else {
+      return shoeSizeArray;
+    }
+  };
+
   const handleSizeClick = (size) => {
     setSelectedSize(size);
   };
-
   const handleAddToCart = () => {
+    let finalSelectedSize = selectedSize;
+  
+    if (sneaker.productType === "ACCESSORY") {
+      finalSelectedSize = "ONE SIZE";
+    }
+  
     const selectedItem = {
       ...sneaker,
-      selectedSize: selectedSize,
+      selectedSize: finalSelectedSize,
     };
+  
     addToCart(selectedItem);
     setShowAlert(true);
     setIsButtonDisabled(true);
-
+  
     // Hide the alert after 3 seconds
     setTimeout(() => {
       setShowAlert(false);
     }, 3000);
-
+  
     setTimeout(() => {
       setIsButtonDisabled(false);
     }, 3000);
   };
+  
 
   return (
     <div className="container-fluid containerproductpage">
@@ -91,9 +110,17 @@ const ProductPage = ({ addToCart }) => {
           <p>{sneaker.demographic}</p>
           <p>${sneaker.price}</p>
 
-          <h4>SELECT US SIZE</h4>
+          <h4>
+  {
+    sneaker.productType === "ACCESSORY" 
+      ? "ONE SIZE" 
+      : sneaker.productType === "CLOTH" 
+        ? "SELECT SIZE" 
+        : "SELECT US SIZE"
+  }
+</h4>
           <div className="size-selector">
-            {sizeArray.map((size) => (
+            {getCurrentSizeArray().map((size) => (
               <button
                 key={size}
                 className={`size-btn ${
@@ -126,4 +153,5 @@ const ProductPage = ({ addToCart }) => {
     </div>
   );
 };
+
 export default ProductPage;

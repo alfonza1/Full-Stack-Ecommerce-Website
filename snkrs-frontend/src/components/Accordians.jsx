@@ -11,7 +11,7 @@ const Accordians = (props) => {
   const [demographic, setDemographic] = useState([]); 
 
   useEffect(() => {
-    Axios.get("http://localhost:8080/sneakers/brands")
+    Axios.get("http://localhost:8080/products/brands")
       .then((response) => {
         setBrands(response.data);
       })
@@ -22,7 +22,7 @@ const Accordians = (props) => {
   }, []);
 
   useEffect(() => {
-    Axios.get("http://localhost:8080/sneakers/producttypes")
+    Axios.get("http://localhost:8080/products/producttypes")
       .then((response) => {
         setProductType(response.data);
       })
@@ -32,7 +32,7 @@ const Accordians = (props) => {
       });
   }, []);
   useEffect(() => {
-    Axios.get("http://localhost:8080/sneakers/demographics")
+    Axios.get("http://localhost:8080/products/demographics")
       .then((response) => {
         setDemographic(response.data);
       })
@@ -88,6 +88,12 @@ const Accordians = (props) => {
               ? "Kids"
               : window.location.pathname === "/newarrivals"
               ? "New Arrivals"
+              : window.location.pathname === "/clothes"
+              ? "Clothing"
+              : window.location.pathname === "/onsale"
+              ? "SALE"
+              : window.location.pathname === "/accessories"
+              ? "Accessories"
               : "Default Text"}
           </h3>
 

@@ -53,7 +53,11 @@ const App = () => {
         <Route path="/men" element={<SneakerCardsData />} />
         <Route path="/women" element={<SneakerCardsData />} />
         <Route path="/kids" element={<SneakerCardsData />} />
-        <Route path="/newArrivals" element={<SneakerCardsData />} />          
+        <Route path="/newArrivals" element={<SneakerCardsData />} /> 
+        <Route path="/clothes" element={<SneakerCardsData />} />          
+        <Route path="/accessories" element={<SneakerCardsData />} />          
+        <Route path="/onsale" element={<SneakerCardsData />} />          
+
         <Route path="/products/:id" element={<ProductsPage cart={cart} addToCart={addToCart} removeFromCart={removeFromCart} />} />
         </Routes>
       </Router>

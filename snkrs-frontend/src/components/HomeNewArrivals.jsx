@@ -8,9 +8,9 @@ function NewArrivals() {
   const location = useLocation();
 
   useEffect(() => {
-    let endpoint = "http://localhost:8080/sneakers/newArrivals";
+    let endpoint = "http://localhost:8080/products/newArrivals";
     if (location.pathname.startsWith("/products/")) {
-      endpoint = "http://localhost:8080/sneakers/popular";
+      endpoint = "http://localhost:8080/products/popular";
     }
 
     fetch(endpoint)

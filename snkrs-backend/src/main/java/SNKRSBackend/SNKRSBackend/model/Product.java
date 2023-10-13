@@ -9,7 +9,7 @@ import org.antlr.v4.runtime.misc.NotNull;
 
 @Entity
 @Data
-public class Sneaker {
+public class Product {
 
 
     @NotNull

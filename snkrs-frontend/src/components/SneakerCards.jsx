@@ -19,20 +19,29 @@ const Releases = () => {
 
     switch (window.location.pathname) {
       case "/popular":
-        endpoint = "http://localhost:8080/sneakers/popular";
+        endpoint = "http://localhost:8080/products/popular";
         break;
       case "/men":
-        endpoint = "http://localhost:8080/sneakers/demographic/MEN";
+        endpoint = "http://localhost:8080/products/demographic/MEN";
         break;
       case "/women":
-        endpoint = "http://localhost:8080/sneakers/demographic/WOMEN";
+        endpoint = "http://localhost:8080/products/demographic/WOMEN";
         break;
       case "/kids":
-        endpoint = "http://localhost:8080/sneakers/demographic/KID";
+        endpoint = "http://localhost:8080/products/demographic/KID";
         break;
       case "/newarrivals":
-        endpoint = "http://localhost:8080/sneakers/newArrivals";
+        endpoint = "http://localhost:8080/products/newArrivals";
         break;
+        case "/onsale":
+          endpoint = "http://localhost:8080/products/onSale";
+          break;
+          case "/accessories":
+            endpoint = "http://localhost:8080/products/type/ACCESSORY";
+            break;
+            case "/clothes":
+              endpoint = "http://localhost:8080/products/type/CLOTH";
+              break;
       default:
         endpoint = "";
     }
@@ -57,6 +66,8 @@ const Releases = () => {
       (selectedBrand === "All" || sneaker.brand === selectedBrand)
     );
   });
+
+  
   const indexOfLastSneaker = currentPage * itemsPerPage;
   const indexOfFirstSneaker = indexOfLastSneaker - itemsPerPage;
   const currentSneakers = filteredSneakers.slice(
