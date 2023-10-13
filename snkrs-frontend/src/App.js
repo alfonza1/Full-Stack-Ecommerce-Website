@@ -10,6 +10,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css'; // Import the Bootstrap Icons
 import ProductsPage from './pages/ProductsPage';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import './App.css';
 
 import {
   BrowserRouter as Router,
@@ -42,26 +43,25 @@ const App = () => {
 
 
   return (
-    <div className="">
+    <div className="app-container">
       <Router>
-      <Navbar cart={cart} removeFromCart={removeFromCart} />
-
-        <Routes>
-
-        <Route path="/" element={<HomePage />} />
-        <Route path="/popular" element={<SneakerCardsData />} />
-        <Route path="/men" element={<SneakerCardsData />} />
-        <Route path="/women" element={<SneakerCardsData />} />
-        <Route path="/kids" element={<SneakerCardsData />} />
-        <Route path="/newArrivals" element={<SneakerCardsData />} /> 
-        <Route path="/clothes" element={<SneakerCardsData />} />          
-        <Route path="/accessories" element={<SneakerCardsData />} />          
-        <Route path="/onsale" element={<SneakerCardsData />} />          
-
-        <Route path="/products/:id" element={<ProductsPage cart={cart} addToCart={addToCart} removeFromCart={removeFromCart} />} />
-        </Routes>
+        <Navbar cart={cart} removeFromCart={removeFromCart} />
+        <div className="content">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/popular" element={<SneakerCardsData />} />
+            <Route path="/men" element={<SneakerCardsData />} />
+            <Route path="/women" element={<SneakerCardsData />} />
+            <Route path="/kids" element={<SneakerCardsData />} />
+            <Route path="/newArrivals" element={<SneakerCardsData />} />
+            <Route path="/clothes" element={<SneakerCardsData />} />
+            <Route path="/accessories" element={<SneakerCardsData />} />
+            <Route path="/onsale" element={<SneakerCardsData />} />
+            <Route path="/products/:id" element={<ProductsPage cart={cart} addToCart={addToCart} removeFromCart={removeFromCart} />} />
+          </Routes>
+        </div>
+        <Footer/>
       </Router>
-      <Footer/>
     </div>
   );
 }

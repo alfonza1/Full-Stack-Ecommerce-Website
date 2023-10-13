@@ -75,6 +75,13 @@ const Releases = () => {
     indexOfLastSneaker
   );
  
+  const capitalizeFirstLetter = (string) => {
+    return string
+      .toLowerCase()
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+  };
 
   return (
     <div className="container">
@@ -106,7 +113,7 @@ const Releases = () => {
 
                     <div className="card-body">
                       <h5 className="card-title">{sneaker.name}</h5>
-                      <p className="card-text">{sneaker.brand}</p>
+                      <p className="card-text">{capitalizeFirstLetter(sneaker.brand)}</p>
                       <p className="card-text">${sneaker.price}</p>
                     </div>
                   </div>
@@ -116,54 +123,57 @@ const Releases = () => {
           </div>
         </div>
       </div>
-      <nav aria-label="Page navigation example" className="paginationbar">
-        <ul className="pagination">
-          <li className={`page-item ${currentPage === 1 ? "disabled" : ""}`}>
-            <a
-              className="page-link"
-              href="#"
-              aria-label="Previous"
-              onClick={() => setCurrentPage(currentPage - 1)}
-            >
-              <span aria-hidden="true">&laquo;</span>
-            </a>
-          </li>
-          {[...Array(Math.ceil(filteredSneakers.length / itemsPerPage))].map(
-            (_, index) => (
-              <li
-                className={`page-item ${
-                  index + 1 === currentPage ? "active" : ""
-                }`}
-                key={index}
-              >
-                <a
-                  className="page-link"
-                  href="#"
-                  onClick={() => setCurrentPage(index + 1)}
-                >
-                  {index + 1}
-                </a>
-              </li>
-            )
-          )}
+      {filteredSneakers.length > 0 && (
+  <nav aria-label="Page navigation example" className="paginationbar">
+    <ul className="pagination">
+      <li className={`page-item ${currentPage === 1 ? "disabled" : ""}`}>
+        <a
+          className="page-link"
+          href="#"
+          aria-label="Previous"
+          onClick={() => setCurrentPage(currentPage - 1)}
+        >
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+      {[...Array(Math.ceil(filteredSneakers.length / itemsPerPage))].map(
+        (_, index) => (
           <li
             className={`page-item ${
-              currentPage === Math.ceil(filteredSneakers.length / itemsPerPage)
-                ? "disabled"
-                : ""
+              index + 1 === currentPage ? "active" : ""
             }`}
+            key={index}
           >
             <a
               className="page-link"
               href="#"
-              aria-label="Next"
-              onClick={() => setCurrentPage(currentPage + 1)}
+              onClick={() => setCurrentPage(index + 1)}
             >
-              <span aria-hidden="true">&raquo;</span>
+              {index + 1}
             </a>
           </li>
-        </ul>
-      </nav>
+        )
+      )}
+      <li
+        className={`page-item ${
+          currentPage === Math.ceil(filteredSneakers.length / itemsPerPage)
+            ? "disabled"
+            : ""
+        }`}
+      >
+        <a
+          className="page-link"
+          href="#"
+          aria-label="Next"
+          onClick={() => setCurrentPage(currentPage + 1)}
+        >
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+)}
+
     </div>
   );
 };

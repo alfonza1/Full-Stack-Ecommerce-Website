@@ -1,3 +1,5 @@
+
+
 fix nav bar search and shopping cart when smaller
 
 fix hero images when smaller 50vh is clean can test though
@@ -15,3 +17,21 @@ fix releases page when screen is smaller
 maybe make picking a size a accordian when screen is smaller   <i className="bi bi-bag d-lg-none bag-icon"></i> {/* <-- Shown only on small screens */}
 
 alert when added to cart
+
+fix accordians when smaller 
+
+
+
+
+
+READ ME NOTES
+
+conditionally renders accordians based on what page the customer is on(example product type doesnt show when on accessories page)
+
+all products are fetched from api
+
+used react,spring boot,mysql
+
+pagination to enhance performance
+
+responsive on all screen sizes 

@@ -29,4 +29,22 @@ width: 300px; /* You can adjust the width value as needed */
   z-index: 2;
 }
 
+/* Add this custom CSS to your stylesheet or component styles */
+.accordion-button:focus {
+  background-color: transparent !important; /* Set the background color to transparent */
+  outline: none !important;; /* Remove the outline that appears by default */
+  box-shadow: none !important;; /* Remove any box-shadow that appears by default */
+}
 
+/* Add this custom CSS to your stylesheet or component styles */
+.accordion-button:not(.collapsed) {
+  background-color: transparent !important; /* Set the background color to transparent */
+}
+
+#checkbox-all-productType + .form-check-label {
+  margin-bottom: 10px;  /* Adjust value as needed */
+}
+
+#checkbox-all-demographic + .form-check-label {
+  margin-bottom: 10px;  /* Adjust value as needed */
+}
