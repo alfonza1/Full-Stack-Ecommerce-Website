@@ -55,3 +55,73 @@
 .pagedot.active {
   background-color: black;
 }
+
+
+@media (max-width: 575.98px) {
+  .hero-container {
+    height: 60vh; /* reduced for smaller screens */
+    margin-top: 150px; /* reduced margin for smaller screens */
+    margin-left: 10px;
+    
+  }
+  .pagination {
+    bottom: 50px;
+
+  }
+  .hero-container.snkrhero1 {
+    background-image: url("../assets/snkr.jpg");
+    background-size: 100% 100%; /* make it 100% of the container */
+
+  }
+  
+  .hero-container.snkrhero2 {
+    background-image: url("../assets/snkrhero3.jpg");
+    background-size: 100% 100%; /* make it 100% of the container */
+  }
+  
+  .hero-container.snkrhero3 {
+    background-image: url("https://www.ballerstatus.com/wp-content/uploads/2021/05/Maison_Margiela_x_Reebok_Classic_Leather_Tabi_grey_1920x1080.jpg");
+    background-size: 100% 100%; /* make it 100% of the container */
+  }
+  
+  .hero-container.snkrhero4 {
+    background-image: url("../assets/snkrhero22.jpg");
+    background-size: 100% 100%; /* make it 90% of the container */
+  }
+
+}
+
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+
+  .hero-container {
+    height: 80vh; /* common height */
+    width: 100% !important; /* common width */
+    background-size: cover; /* cover the whole container */
+    background-position: center; /* center the image */
+    background-repeat: no-repeat; /* do not repeat the image */
+    color: white;
+    margin-top: 80px; /* reduced margin for smaller screens */
+    margin-left: 20px;
+
+  }
+  .pagination {
+    bottom: 50px;
+  }
+
+}
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .hero-container {
+    height: 85vh; /* common height */
+    width: 100% !important; /* common width */
+    background-size: cover; /* cover the whole container */
+    background-position: center; /* center the image */
+    background-repeat: no-repeat; /* do not repeat the image */
+    color: white;
+    margin-top: 40px; /* reduced margin for smaller screens */
+
+  }
+  .pagination {
+    bottom: 40px;
+  }
+}

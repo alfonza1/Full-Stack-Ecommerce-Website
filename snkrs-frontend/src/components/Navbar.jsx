@@ -1,35 +1,43 @@
-import React, { useState } from 'react';
-import '../styles/Navbar.css';
+import React, { useState } from "react";
+import "../styles/Navbar.css";
+import { Link } from 'react-router-dom';
 
 const Navbar = ({ cart, removeFromCart }) => {
   const [isOffcanvasVisible, setOffcanvasVisible] = useState(false);
 
   const toggleOffcanvas = () => {
     if (!isOffcanvasVisible) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
     }
     setOffcanvasVisible(!isOffcanvasVisible);
   };
-  
 
-
+  const computeTotal = () => {
+    return cart
+      .reduce((acc, item) => acc + parseFloat(item.price), 0)
+      .toFixed(2);
+  };
 
   return (
-    <div>
+    <div className="wholenav">
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
-         
-             <i className="bi bi-bag d-lg-none bag-icon" onClick={toggleOffcanvas} style={{ cursor: 'pointer', position: 'relative' }}>
-    {cart.length > 0 && (
-       <span 
-       className="position-absolute top-0 start-100 translate-middle bg-danger border border-light rounded-circle" 
-       style={{ width: '12px', height: '12px'}}>
-       <span className="visually-hidden">New alerts</span>
-    </span>
-    )}
-</i>
+          <i
+            className="bi bi-bag d-lg-none bag-icon"
+            onClick={toggleOffcanvas}
+            style={{ cursor: "pointer", position: "relative" }}
+          >
+            {cart.length > 0 && (
+              <span
+                className="position-absolute top-0 start-100 translate-middle bg-danger border border-light rounded-circle"
+                style={{ width: "12px", height: "12px" }}
+              >
+                <span className="visually-hidden">New alerts</span>
+              </span>
+            )}
+          </i>
           <a className="navbar-brand" href="/">
             SNKRS
           </a>
@@ -48,12 +56,20 @@ const Navbar = ({ cart, removeFromCart }) => {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item me-4">
-                <a className="nav-link active" aria-current="page" href="/newarrivals">
+                <a
+                  className="nav-link active"
+                  aria-current="page"
+                  href="/newarrivals"
+                >
                   New Arrivals
                 </a>
               </li>
               <li className="nav-item me-4">
-                <a className="nav-link active" aria-current="page" href="/popular">
+                <a
+                  className="nav-link active"
+                  aria-current="page"
+                  href="/popular"
+                >
                   Popular Releases
                 </a>
               </li>
@@ -63,7 +79,11 @@ const Navbar = ({ cart, removeFromCart }) => {
                 </a>
               </li>
               <li className="nav-item me-4">
-                <a className="nav-link active" aria-current="page" href="/women">
+                <a
+                  className="nav-link active"
+                  aria-current="page"
+                  href="/women"
+                >
                   Women
                 </a>
               </li>
@@ -75,26 +95,28 @@ const Navbar = ({ cart, removeFromCart }) => {
             </ul>
           </div>
 
-          <i className="bi bi-bag d-none d-lg-inline bag-icon" onClick={toggleOffcanvas} style={{ cursor: 'pointer', position: 'relative' }}>
-    {cart.length > 0 && (
-   <span 
-   className="position-absolute top-0 start-100 translate-middle bg-danger border border-light rounded-circle" 
-   style={{ width: '12px', height: '12px'}}>
-   <span className="visually-hidden">New alerts</span>
-</span>
-    )}
-</i>
+          <i
+            className="bi bi-bag d-none d-lg-inline bag-icon"
+            onClick={toggleOffcanvas}
+            style={{ cursor: "pointer", position: "relative" }}
+          >
+            {cart.length > 0 && (
+              <span
+                className="position-absolute top-0 start-100 translate-middle bg-danger border border-light rounded-circle"
+                style={{ width: "12px", height: "12px" }}
+              >
+                <span className="visually-hidden">New alerts</span>
+              </span>
+            )}
+          </i>
           <i className="bi bi-search d-none d-lg-inline search-icon"></i>
         </div>
       </nav>
 
       {isOffcanvasVisible && (
-        <div 
-          className="offcanvas-bg" 
-          onClick={toggleOffcanvas}
-        ></div>
+        <div className="offcanvas-bg" onClick={toggleOffcanvas}></div>
       )}
-  {isOffcanvasVisible && (
+      {isOffcanvasVisible && (
         <div
           className="offcanvas offcanvas-end show"
           tabIndex="-1"
@@ -113,23 +135,48 @@ const Navbar = ({ cart, removeFromCart }) => {
             ></button>
           </div>
           <div className="offcanvas-body">
-  {cart.length === 0 ? (
-    <p>Your cart is empty.</p>
-  ) : (
-    cart.map((item, index) => (
-      <div key={index}>
-        <img src={item.photo} alt={item.name} style={{ width: '150px', height: '100px' }} />
-        <h5>{item.name}</h5>
-        
-        <p>Size: {item.selectedSize}</p>
-        <p>${item.price}</p>
-        <button onClick={() => removeFromCart(index)}>Remove</button>
-      </div>
-    ))
-    
-  )}
-</div>
-
+            {cart.length > 0 && (
+              <div className="cart-subtotal mb-4 d-flex justify-content-center">
+                <strong>Subtotal:</strong> ${computeTotal()}
+              </div>
+            )}
+            {cart.length === 0 ? (
+              <p>Your cart is empty.</p>
+            ) : (
+              cart.map((item, index) => (
+                <div key={index} className="cartitems">
+                    <a 
+                        href={`/products/${item.id}`} 
+                        style={{ textDecoration: "none", color: "inherit" }}
+                        onClick={(e) => {
+                            toggleOffcanvas();
+                        }}
+                    >
+                        <img src={item.photo} alt={item.name} style={{ width: "150px", height: "100px" }}/>
+                        <h5>{item.name}</h5>
+                        <p>Size: {item.selectedSize}</p>
+                        <p>${item.price}</p>
+                    </a>
+                    <span onClick={(e) => {
+                        e.stopPropagation(); // Prevent the click from propagating to the anchor tag
+                        removeFromCart(index);
+                    }} class="badge text-bg-danger mb-4">
+                        <i class="bi bi-trash"></i>
+                    </span>
+                </div>
+            ))
+            
+            
+            
+            )}
+            {cart.length > 0 && (
+              <div className="d-flex justify-content-center">
+                <button type="button" class="btn btn-success col-6">
+                  Checkout
+                </button>
+              </div>
+            )}
+          </div>
         </div>
       )}
     </div>

@@ -1,5 +1,3 @@
-/* Footer.css */
-
 .footer {
     background-color: #333;
     color: white;
@@ -9,6 +7,7 @@
 
 .footer-container {
     display: flex;
+    flex-wrap: wrap; /* allow items to wrap to next line */
     justify-content: space-between;
     max-width: 1200px;
     margin: 0 auto;
@@ -17,6 +16,7 @@
 
 .footer-column {
     flex: 1;
+    margin-bottom: 20px; /* provide some space between stacked columns */
 }
 
 .footer-heading {
@@ -33,7 +33,6 @@
     margin-right: 10px;
     border: none;
     background-color: rgb(218, 215, 215);
-
 }
 
 .subscribe-button {
@@ -45,3 +44,16 @@
     margin-top: 5px;
 }
 
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column; /* stack the items vertically */
+        align-items: center; /* center align the stacked columns */
+    }
+
+    .footer-column {
+        width: 100%; /* take up full width */
+        text-align: center; /* center the text */
+        margin-bottom: 15px; /* provide some space between stacked columns */
+    }
+}

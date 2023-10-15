@@ -22,7 +22,9 @@
   align-items: center;
 }
 
-
+.alert{
+  position: absolute;
+}
 .size-selector {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(55px, 1fr));
@@ -34,6 +36,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  color: black;
 }
 .size-selector {
   display: grid;
@@ -84,7 +87,9 @@
 }
 
 
-
+.sneakbrand{
+  color: #6e6e6e;
+}
 @media screen and (max-width: 1200px) {
   .image-container {
       margin-bottom: 60px;
@@ -107,7 +112,7 @@
   .containerproductpage {
     position: relative;
     top: 120px;  
-    margin-bottom: 250px;
+    margin-bottom: 240px;
 
   }
   .sneaker-imagee {

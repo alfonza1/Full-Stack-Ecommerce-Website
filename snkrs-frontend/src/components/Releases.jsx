@@ -93,18 +93,18 @@ const Releases = () => {
             setSelectedBrand={setSelectedBrand}
           />
         </div>
-        <div className="col-9 ">
+        <div className="col-xxl-9 col-12 col-xl-9 col-lg-9 col-md-12 col-sm-12 ">
           <div className="row releasecards">
             {currentSneakers.map((sneaker) => (
               <div
-                className="col-12 col-xxl-3 col-xl-4 col-lg-6 col-md-6 col-sm-12"
+              className="col-6 col-xxl-3 col-xl-4 col-lg-4 col-md-6 col-sm-6 "
                 key={sneaker.id}
               >
                 <Link
                   to={`/products/${sneaker.id}`}
                   style={{ textDecoration: "none" }}
                 >
-                  <div className="card" style={{ width: "15rem" }}>
+                  <div className="card releasecard">
                     <img
                       src={sneaker.photo}
                       className="card-img-top card-img-custom"
@@ -112,9 +112,8 @@ const Releases = () => {
                     />
 
                     <div className="card-body">
-                      <h5 className="card-title">{sneaker.name}</h5>
-                      <p className="card-text">{capitalizeFirstLetter(sneaker.brand)}</p>
-                      <p className="card-text">${sneaker.price}</p>
+                      <p className="card-title sneaker-name">{sneaker.name}</p>
+                      <p className="card-text sneaker-name">${sneaker.price}</p>
                     </div>
                   </div>
                 </Link>

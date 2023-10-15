@@ -16,7 +16,9 @@ width: 300px; /* You can adjust the width value as needed */
   border-color: green; /* Change this to your desired border color for checked checkboxes */
 }
 
-
+.accordscontain{
+  z-index: 9999;
+}
 
 .accordianTitle{
 

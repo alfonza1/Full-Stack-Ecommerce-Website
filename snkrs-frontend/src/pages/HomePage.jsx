@@ -12,6 +12,7 @@ const HomePage = () => {
 <Hero/>
 <HomeDemographics/>
 <NewArrivals/>
+
     </div>
   );
 };

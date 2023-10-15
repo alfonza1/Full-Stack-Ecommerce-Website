@@ -1,21 +1,61 @@
-.releasecards{
-
-margin-top: 140px;
-margin-bottom: 100px;
-
+.releasecards {
+  margin-top: 140px;
+  margin-bottom: 100px;
+  
 }
 
 /* // dont forge acc */
 
 /* CSS */
 .card-img-custom {
-    height: 200px; /* Adjust the height value as needed to make the image longer */
-    object-fit: cover; /* Maintain aspect ratio and cover the container */
-  }
-  
+  height: 150px; /* Adjust the height value as needed to make the image longer */
+  width: 120%;
+  object-fit: cover; /* Maintain aspect ratio and cover the container */
+}
 
-  .paginationbar{
+.paginationbar {
+  position: relative;
+}
+
+.sneaker-name {
+  font-size: 17px;  /* Adjust as needed to fit the text on one line */
+  max-width: 95%; /* You might need to adjust this value */
+  color: black;
+}
+
+@media (max-width: 575.98px) {
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .releasecards {
     position: relative;
+    margin-top: 200px;
+    margin-bottom: 100px;
   }
- 
-  
+  .card-img-custom {
+    height: 180px; /* Adjust the height value as needed to make the image longer */
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+}
+@media (min-width: 1200px) {
+}
+
+@media (max-width: 767.98px) {
+  .releasecards {
+    position: relative;
+    margin-top: 200px;
+    margin-bottom: 100px;
+  }
+  .card-img-custom {
+    height: 120px; /* Adjust the height value as needed to make the image longer */
+  }
+
+  .releasecard {
+    margin-top: 50px;
+  }
+}

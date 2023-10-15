@@ -1,25 +1,11 @@
 
+fix text in navbar, looks bad on smaller screens
 
 fix nav bar search and shopping cart when smaller
 
-fix hero images when smaller 50vh is clean can test though
-
 show only 6 home releases when screen is smaller... may not need 
 
-fix home cards when smaller
-
-fix footer to be lower even with no data
-
-Add on sale,clothes, and accessories page 
-
-fix releases page when screen is smaller
-
-maybe make picking a size a accordian when screen is smaller   <i className="bi bi-bag d-lg-none bag-icon"></i> {/* <-- Shown only on small screens */}
-
-alert when added to cart
-
-fix accordians when smaller 
-
+* product page doesnt scroll to top on small screens
 
 
 
@@ -35,3 +21,5 @@ used react,spring boot,mysql
 pagination to enhance performance
 
 responsive on all screen sizes 
+
+Live demo link

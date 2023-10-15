@@ -34,10 +34,9 @@ const Footer = () => {
 
                 {/* Social Links Column */}
                 <div className="footer-column">
-                    <div className="footer-heading">FOLLOW US ON</div>
-                    <div className="footer-item">Instagram</div>
-                    <div className="footer-item">Facebook</div>
-                    <div className="footer-item">Twitter</div>
+                    <div className="footer-heading">FOLLOW ME ON</div>
+                 <a href="https://github.com/alfonza1">  <div className="footer-item ">Github</div></a>
+                   <a href="https://www.linkedin.com/in/alfonza-jones/"> <div className="footer-item">LinkedIn</div></a>
                 </div>
               
             </div>

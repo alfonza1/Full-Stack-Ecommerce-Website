@@ -60,7 +60,7 @@ function NewArrivals() {
         <div className="row sneaker-cards">
           {sneakers.map((sneaker, index) => (
             <div
-              className="col-12 col-xxl-3 col-xl-4 col-lg-4 col-md-6 col-sm-6"
+              className="col-6 col-xxl-3 col-xl-4 col-lg-6 col-md-6 col-sm-6 "
               key={index}
             >
               <Link
@@ -68,11 +68,11 @@ function NewArrivals() {
                 style={{ textDecoration: "none" }}
                 onClick={scrollToTop}
               >
-                <div className="card" style={{ width: "18rem" }}>
+                <div className="card newarrivalcards">
                   <img
                     src={sneaker.photo}
                     className="card-img-top"
-                    alt={sneaker.sneakerName}
+                    alt={sneaker.name}
                   />
                   <div className="card-body">
                     <p className="card-text">{sneaker.name}</p>

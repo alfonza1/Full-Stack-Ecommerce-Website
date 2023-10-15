@@ -13,7 +13,13 @@ body {
   z-index: 1030; /* Ensure it's below the offcanvas but above everything else */
   background-color: rgba(0, 0, 0, 0.5); /* semi-transparent gray */
 }
+.cartitems{
+  margin-left: 50px;
+}
+.badge{
+cursor: pointer;
 
+}
 .navbar-nav {
   margin-left: auto;
   margin-right: auto;
@@ -24,6 +30,7 @@ body {
 .navbar-nav .nav-item {
   position: relative;
 }
+
 
 .navbar-nav .nav-link {
   position: relative;
@@ -66,7 +73,7 @@ body {
 }
 .navbar {
   position: fixed;
-  width: 100%;
+  width: 99%;
   z-index: 99;
 }
 
@@ -85,7 +92,7 @@ body {
     margin-left: 10%;
   }
   .nav-item {
-    margin-left: 86%;
+    margin-left: 80%;
     font-size: 1rem;
   }
 }

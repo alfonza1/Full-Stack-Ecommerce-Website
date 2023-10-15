@@ -47,31 +47,31 @@ const Accordians = (props) => {
 
     // If "All" is checked, clear all other selections in the same accordion
     if (value === "All") {
-        if (name === "demographic") {
-            setSelectedDemographic("All");
-            props.setSelectedDemographic("All");
-        } else if (name === "productType") {
-            setSelectedProductType("All");
-            props.setSelectedProductType("All");
-        } else if (name === "brand") {
-            setSelectedBrand("All");
-            props.setSelectedBrand("All");
-        }
-    } 
+      if (name === "demographic") {
+        setSelectedDemographic("All");
+        props.setSelectedDemographic("All");
+      } else if (name === "productType") {
+        setSelectedProductType("All");
+        props.setSelectedProductType("All");
+      } else if (name === "brand") {
+        setSelectedBrand("All");
+        props.setSelectedBrand("All");
+      }
+    }
     // If any other checkbox is checked, uncheck "All"
     else {
-        if (name === "demographic") {
-            setSelectedDemographic(value);
-            props.setSelectedDemographic(value);
-        } else if (name === "productType") {
-            setSelectedProductType(value);
-            props.setSelectedProductType(value);
-        } else if (name === "brand") {
-            setSelectedBrand(value);
-            props.setSelectedBrand(value);
-        }
+      if (name === "demographic") {
+        setSelectedDemographic(value);
+        props.setSelectedDemographic(value);
+      } else if (name === "productType") {
+        setSelectedProductType(value);
+        props.setSelectedProductType(value);
+      } else if (name === "brand") {
+        setSelectedBrand(value);
+        props.setSelectedBrand(value);
+      }
     }
-};
+  };
 
   const capitalizeFirstLetter = (string) => {
     return string
@@ -96,7 +96,7 @@ const Accordians = (props) => {
   const fetchedProductTypeAcc = "ACCESSORY";
 
   return (
-    <div className="container">
+    <div className="container accordscontain">
       <div className="row">
         <div className="col-3">
           <h3 className="accordianTitle">
@@ -214,23 +214,23 @@ const Accordians = (props) => {
                     data-bs-parent="#accordionExample"
                   >
                     <div className="accordion-body">
-                    <div className="form-check">
-    <input
-        name="demographic" // <-- Change this
-        className="form-check-input"
-        type="checkbox"
-        value="All"
-        id="checkbox-all-demographic" // <-- Change this
-        checked={selectedDemographic === "All"} 
-        onChange={handleCheckboxChange}
-    />
-    <label
-        className="form-check-label"
-        htmlFor="checkbox-all-demographic" // <-- Change this
-    >
-        All
-    </label>
-</div>
+                      <div className="form-check">
+                        <input
+                          name="demographic" // <-- Change this
+                          className="form-check-input"
+                          type="checkbox"
+                          value="All"
+                          id="checkbox-all-demographic" // <-- Change this
+                          checked={selectedDemographic === "All"}
+                          onChange={handleCheckboxChange}
+                        />
+                        <label
+                          className="form-check-label"
+                          htmlFor="checkbox-all-demographic" // <-- Change this
+                        >
+                          All
+                        </label>
+                      </div>
 
                       {demographic.map((demographic) => (
                         <div className="form-check" key={demographic}>
@@ -279,23 +279,23 @@ const Accordians = (props) => {
                   data-bs-parent="#accordionBrands"
                 >
                   <div className="accordion-body">
-                  <div className="form-check">
-    <input
-        name="brand" // <-- Change this
-        className="form-check-input"
-        type="checkbox"
-        value="All"
-        id="checkbox-all-brand" // <-- Change this
-        checked={selectedBrand === "All"} 
-        onChange={handleCheckboxChange}
-    />
-    <label
-        className="form-check-label"
-        htmlFor="checkbox-all-brand" // <-- Change this
-    >
-        All
-    </label>
-</div>
+                    <div className="form-check">
+                      <input
+                        name="brand" // <-- Change this
+                        className="form-check-input"
+                        type="checkbox"
+                        value="All"
+                        id="checkbox-all-brand" // <-- Change this
+                        checked={selectedBrand === "All"}
+                        onChange={handleCheckboxChange}
+                      />
+                      <label
+                        className="form-check-label"
+                        htmlFor="checkbox-all-brand" // <-- Change this
+                      >
+                        All
+                      </label>
+                    </div>
                     {brands.map((brand) => (
                       <div className="form-check" key={brand}>
                         <input

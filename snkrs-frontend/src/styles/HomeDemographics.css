@@ -16,9 +16,13 @@
   font-size: 1.21rem;
 }
 
-.demographicCards{
-  margin-top: 100px;
 
+
+
+.demographicCards{
+  width: 100%; /* This reduces the card's width to 80% of its container. Adjust as needed. */
+  margin: 0 auto; 
+  margin-top: 50px;
 }
 
 .demographicName {
@@ -54,7 +58,22 @@
   color: inherit; /* Adjust if you want a different hover color */
 }
 
+@media (max-width: 575.98px) {
+  .card-list{
 
+    margin-top: 175px !important;
+  }
+  
+
+}
+@media (min-width: 576px) and (max-width: 767.98px) {
+
+  .card-list{
+
+    margin-top: 100px !important;
+  }
+
+}
 @media (max-width: 767px) { 
   .card {
     font-size: 1rem; 
@@ -64,6 +83,10 @@
 @media (min-width: 768px) and (max-width: 991px) { 
   .card {
     font-size: 1.1rem;
+  }
+  .card-list{
+
+    margin-top: 50px !important;
   }
 }
 

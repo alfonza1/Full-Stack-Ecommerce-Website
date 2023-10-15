@@ -6,10 +6,13 @@ import "../styles/ProductPage.css";
 const ProductPage = ({ addToCart }) => {
   const { id } = useParams();
   const [sneaker, setSneaker] = useState({});
-  const [selectedSize, setSelectedSize] = useState("6");
+  const [selectedSize, setSelectedSize] = useState("");
   const [showAlert, setShowAlert] = useState(false);
   const [isButtonDisabled, setIsButtonDisabled] = useState(false); // State for button disabled state
+  const [sizeAlert, setSizeAlert] = useState(false);
 
+
+  
   useEffect(() => {
     Axios.get(`http://localhost:8080/products/${id}`)
       .then((response) => {
@@ -21,9 +24,9 @@ const ProductPage = ({ addToCart }) => {
   }, [id]);
 
   useEffect(() => {
-    scrollToTop();
+    setTimeout(scrollToTop, 100); // 100ms delay
   }, []);
-
+  
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -64,39 +67,63 @@ const ProductPage = ({ addToCart }) => {
 
   const handleSizeClick = (size) => {
     setSelectedSize(size);
+    setSizeAlert(false); // Clear the size alert
   };
+
   const handleAddToCart = () => {
+    if (!selectedSize && sneaker.productType !== "ACCESSORY") {
+      setSizeAlert(true);
+
+      // Hide the "Please pick a size" alert after 3 seconds
+      setTimeout(() => {
+        setSizeAlert(false);
+      }, 3000);
+
+      return; // Exit the function early to avoid adding to cart without a size
+    }
+
     let finalSelectedSize = selectedSize;
-  
+
     if (sneaker.productType === "ACCESSORY") {
       finalSelectedSize = "ONE SIZE";
     }
-  
+
     const selectedItem = {
       ...sneaker,
       selectedSize: finalSelectedSize,
     };
-  
+
     addToCart(selectedItem);
     setShowAlert(true);
     setIsButtonDisabled(true);
-  
-    // Hide the alert after 3 seconds
+
+    // Hide the "Added to Cart Successfully" alert after 3 seconds
     setTimeout(() => {
       setShowAlert(false);
     }, 3000);
-  
+
+    // Enable the "Add to Cart" button after 3 seconds
     setTimeout(() => {
       setIsButtonDisabled(false);
     }, 3000);
   };
-  
 
+  const capitalizeFirstLetter = (string) => {
+    if (!string) return '';  // Return an empty string if the input is falsy
+  
+    return string
+      .toLowerCase()
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+  };
+  
   return (
     <div className="container-fluid containerproductpage">
       <div className="row">
         {/* Navigation and images */}
         <div className="col-12 col-xl-6 image-container">
+
           <img
             src={sneaker.photo}
             alt={sneaker.name}
@@ -106,19 +133,23 @@ const ProductPage = ({ addToCart }) => {
         </div>
 
         <div className="col-12 col-xl-6 sneaker-details">
+          <p className="sneakbrand">
+            {sneaker.brand
+              ? capitalizeFirstLetter(sneaker.brand.replace(/_/g, " "))
+              : "Loading..."}
+          </p>
+
           <h3>{sneaker.name}</h3>
           <p>{sneaker.demographic}</p>
           <p>${sneaker.price}</p>
 
           <h4>
-  {
-    sneaker.productType === "ACCESSORY" 
-      ? "ONE SIZE" 
-      : sneaker.productType === "CLOTH" 
-        ? "SELECT SIZE" 
-        : "SELECT US SIZE"
-  }
-</h4>
+            {sneaker.productType === "ACCESSORY"
+              ? "ONE SIZE"
+              : sneaker.productType === "CLOTH"
+              ? "SELECT SIZE"
+              : "SELECT US SIZE"}
+          </h4>
           <div className="size-selector">
             {getCurrentSizeArray().map((size) => (
               <button
@@ -133,7 +164,7 @@ const ProductPage = ({ addToCart }) => {
             ))}
           </div>
 
-          <div >
+          <div>
             <button
               className="add-to-cart-btn "
               onClick={handleAddToCart}
@@ -143,8 +174,13 @@ const ProductPage = ({ addToCart }) => {
             </button>
             {/* Add other buttons and details as per your requirements */}
             {showAlert && (
-              <div className="alert alert-dark mt-2 col-5">
+              <div className="alert alert-dark mt-2 col-xxl-2 col-lg-2 col-md-3 col-sm-4 col-8">
                 Added to Cart Successfully
+              </div>
+            )}
+            {sizeAlert && (
+              <div className="alert alert-danger mt-2 col-xxl-2 col-lg-2 col-md-3 col-sm-4 col-8">
+                Please pick a size
               </div>
             )}
           </div>

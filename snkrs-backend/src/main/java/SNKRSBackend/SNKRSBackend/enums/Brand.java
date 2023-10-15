@@ -12,7 +12,7 @@ public enum Brand {
     SAUCONY,
     UNDER_ARMOUR,
     FILA,
-    JORDAN,
+    Air_JORDAN,
     YEEZY,
     GUCCI,
     DIOR,
