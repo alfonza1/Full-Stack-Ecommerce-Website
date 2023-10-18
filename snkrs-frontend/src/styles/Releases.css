@@ -8,8 +8,8 @@
 
 /* CSS */
 .card-img-custom {
-  height: 150px; /* Adjust the height value as needed to make the image longer */
-  width: 120%;
+  height: 180px; /* Adjust the height value as needed to make the image longer */
+  width: auto;
   object-fit: cover; /* Maintain aspect ratio and cover the container */
 }
 
@@ -18,7 +18,7 @@
 }
 
 .sneaker-name {
-  font-size: 17px;  /* Adjust as needed to fit the text on one line */
+  font-size: 18px;  /* Adjust as needed to fit the text on one line */
   max-width: 95%; /* You might need to adjust this value */
   color: black;
 }
@@ -52,7 +52,7 @@
     margin-bottom: 100px;
   }
   .card-img-custom {
-    height: 120px; /* Adjust the height value as needed to make the image longer */
+    height: 135px; /* Adjust the height value as needed to make the image longer */
   }
 
   .releasecard {

@@ -89,7 +89,7 @@ const Accordians = (props) => {
 
   const shouldRenderProductTypeAccordion = ![
     "/accessories",
-    "/clothes",
+    "/apparel",
   ].includes(window.location.pathname);
 
   const fetchedProductType = "CLOTH"; // Replace this with the actual fetched product type
@@ -110,8 +110,8 @@ const Accordians = (props) => {
               ? "Kids"
               : window.location.pathname === "/newarrivals"
               ? "New Arrivals"
-              : window.location.pathname === "/clothes"
-              ? "Clothing"
+              : window.location.pathname === "/apparel"
+              ? "Apparel"
               : window.location.pathname === "/onsale"
               ? "SALE"
               : window.location.pathname === "/accessories"
@@ -178,7 +178,7 @@ const Accordians = (props) => {
                           >
                             <p>
                               {productTypeItem === "CLOTH"
-                                ? "Clothes"
+                                ? "Apparel"
                                 : productTypeItem === "ACCESSORY"
                                 ? "Accessories"
                                 : productTypeItem === "SNEAKER"

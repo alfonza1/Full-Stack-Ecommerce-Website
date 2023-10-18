@@ -20,6 +20,7 @@ public interface ProductRepository extends CrudRepository<Product, Long> {
     List<Product> findBySaleTrue();
     List<Product> findAllProductsByProductType(ProductType productType);
 
+
     @Query("SELECT p FROM Product p WHERE (p.brand = :brandEnum) OR (p.demographic = :demographicEnum) OR (p.productType = :productTypeEnum) OR (lower(p.name) LIKE lower(concat('%', :query, '%')))")
     List<Product> findByQueryAcrossFields(
             @Param("brandEnum") Brand brandEnum,

@@ -16,9 +16,9 @@ class HomeDemographicmages {
         href: '/kids',
       },
       {
-        demographic: 'Clothing',
+        demographic: 'Apparel',
         imageSrc: 'https://images.footlocker.com/content/dam/final/footlocker/site/homepage/2023/september/230912-fl-hp-category-6up-update-clothing.jpg',
-        href: '/clothes',
+        href: '/apparel',
       },
       {
         demographic: 'Accessories',

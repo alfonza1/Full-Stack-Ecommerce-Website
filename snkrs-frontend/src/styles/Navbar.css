@@ -23,9 +23,8 @@ body {
   z-index: 1030; /* Ensure it's below the offcanvas but above everything else */
   background-color: rgba(0, 0, 0, 0.5); /* semi-transparent gray */
 }
-.cartitems{
-  margin-left: 50px;
-}
+
+
 .badge{
 cursor: pointer;
 
@@ -33,8 +32,11 @@ cursor: pointer;
 .navbar-nav {
   margin-left: auto;
   margin-right: auto;
-  text-align: center;
   font-size: 1.14rem;
+}
+
+.cart-subtotal{
+  font-size: 16px;
 }
 
 .navbar-nav .nav-item {
@@ -46,20 +48,6 @@ cursor: pointer;
   position: relative;
 }
 
-.navbar-nav .nav-link::before {
-  content: "";
-  position: absolute;
-  width: 0;
-  height: 0.12rem;
-  background-color: black;
-  bottom: -1px;
-  left: 0;
-  transition: width 0.5s ease;
-}
-
-.navbar-nav .nav-link:hover::before {
-  width: 100%;
-}
 
 .carticon {
   color: black;
@@ -83,7 +71,7 @@ cursor: pointer;
 }
 .navbar {
   position: fixed;
-  width: 99%;
+  width: 100%;
   z-index: 99;
 }
 
@@ -91,21 +79,36 @@ cursor: pointer;
   margin-left: 2%;
 }
 
+.searchalert{
+  position: relative;
+  top: 60px;
+  height: 50px;
+}
+
 .smallsearch{
   cursor: pointer;
 }
 @media (max-width: 992px) {
-  /* Your CSS rules go here */
-  /* .bi-search{
-        margin-right: 70%;
-
-
-} */
   .navbar-brand {
     margin-left: 10%;
   }
   .nav-item {
-    margin-left: 80%;
     font-size: 1rem;
   }
 }
+@media (min-width: 993px) {
+
+.navbar-nav .nav-link::before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0.12rem;
+  background-color: black;
+  bottom: -1px;
+  left: 0;
+  transition: width 0.5s ease;
+}
+
+.navbar-nav .nav-link:hover::before {
+  width: 100%;
+}}

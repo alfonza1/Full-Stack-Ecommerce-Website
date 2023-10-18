@@ -55,7 +55,7 @@ const App = () => {
             <Route path="/women" element={<SneakerCardsData />} />
             <Route path="/kids" element={<SneakerCardsData />} />
             <Route path="/newArrivals" element={<SneakerCardsData />} />
-            <Route path="/clothes" element={<SneakerCardsData />} />
+            <Route path="/apparel" element={<SneakerCardsData />} />
             <Route path="/accessories" element={<SneakerCardsData />} />
             <Route path="/onsale" element={<SneakerCardsData />} />
             <Route path="/:searchQuery" element={<SneakerCardsData />} />

@@ -24,6 +24,7 @@ public enum Brand {
     CLARKS,
     MERRELL,
     SKECHERS,
+    SP5DER
 
     // add more brands here if needed
 }

@@ -5,6 +5,7 @@ import Axios from "axios";
 import { Link } from "react-router-dom";
 import { useSearchParams } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
+import NewArrivals from '../components/HomeNewArrivals';
 
 function Releases() {
   const [sneakers, setSneakers] = useState([]);
@@ -12,7 +13,7 @@ function Releases() {
   const [selectedProductType, setSelectedProductType] = useState("All");
   const [selectedBrand, setSelectedBrand] = useState("All");
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 16;
+  const itemsPerPage = 20;
   const [searchParams] = useSearchParams();
   const searchTerm = searchParams.get('query');
   
@@ -42,7 +43,7 @@ function Releases() {
       case "/accessories":
         endpoint = "http://localhost:8080/products/type/ACCESSORY";
         break;
-      case "/clothes":
+      case "/apparel":
         endpoint = "http://localhost:8080/products/type/CLOTH";
         break;
       case "/search":
@@ -89,11 +90,22 @@ function Releases() {
       .join(" ");
   };
 
+
+  useEffect(() => {
+    setTimeout(scrollToTop, 100); // 100ms delay
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+
   return (
     <div className="container">
       <div className="row">
         <div className="col-3">
-          <Accordians
+        
+ <Accordians
             setSelectedDemographic={setSelectedDemographic}
             setSelectedProductType={setSelectedProductType}
             setSelectedBrand={setSelectedBrand}
@@ -101,11 +113,16 @@ function Releases() {
         </div>
         <div className="col-xxl-9 col-12 col-xl-9 col-lg-9 col-md-12 col-sm-12 ">
           <div className="row releasecards">
+          {currentSneakers.length === 0 && (
+          <><h4 className="noproducts mt-4"> No products found </h4><NewArrivals /></>
+
+        )}
             {currentSneakers.map((sneaker) => (
               <div
                 className="col-6 col-xxl-3 col-xl-4 col-lg-4 col-md-6 col-sm-6 "
                 key={sneaker.id}
               >
+                
                 <Link
                   to={`/products/${sneaker.id}`}
                   style={{ textDecoration: "none" }}
@@ -128,6 +145,7 @@ function Releases() {
           </div>
         </div>
       </div>
+      
       {filteredSneakers.length > 0 && (
         <nav aria-label="Page navigation example" className="paginationbar">
           <ul className="pagination">

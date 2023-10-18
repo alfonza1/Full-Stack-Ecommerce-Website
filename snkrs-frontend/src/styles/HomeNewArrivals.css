@@ -7,6 +7,7 @@
 
 .sneaker-cards {
   row-gap: 0.5rem; /* Reduced vertical spacing between rows */
+  height: auto;
 }
 
 .popularcard {
@@ -31,10 +32,24 @@ text-decoration: none;
 color: rgb(58, 58, 58);
 font-size: 18px;
 }
-.newarrivalcards{
+.newarrivalcards {
   color: black;
+  display: flex; /* ensure the card content is centered */
+  flex-direction: column; /* stack child elements vertically */
+  justify-content: center; /* center child elements vertically */
+  align-items: center; /* center child elements horizontally */
+  margin-right: 20px;
+}
+.card-img-top {
+  width: 100%; /* take the full width of the parent */
+  height: 100%; /* take the full height of the parent */
+  object-fit: contain; /* ensures that the image is scaled to be as large as possible while ensuring both its dimensions are less than or equal to the dimensions of the box */
+  display: block; /* remove any unwanted white space */
 }
 
 
+@media (min-width: 993px) {
 
-
+.card-body{
+  margin-bottom: 75px;
+}}

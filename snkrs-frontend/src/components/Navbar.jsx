@@ -8,6 +8,7 @@ const Navbar = ({ cart, removeFromCart }) => {
   const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate(); // Change from useHistory to useNavigate
   const [searchInput, setSearchInput] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
 
   const toggleOffcanvas = () => {
     if (!isOffcanvasVisible) {
@@ -36,14 +37,80 @@ const Navbar = ({ cart, removeFromCart }) => {
       document.body.style.overflow = "auto";
     };
   }, [showModal]);
+  
+  const brandMap = {
+    "adidas": "ADIDAS",
+    "nikes": "NIKE",
+    "pumas": "PUMA",
+    "jordans": "AIR_JORDAN",
+    "jordan": "AIR_JORDAN",
+    "retros": "AIR_JORDAN",
+    "Js": "AIR_JORDAN",
+    "retro": "AIR_JORDAN",
+    "kanye": "YEEZY",
+    "yeezys": "YEEZY",
+    "guccis": "GUCCI",
+    "diors": "DIOR",
+    "balenciagas": "BALENCIAGA",
+    "louisvuittons": "LOUIS_VUITTON",
+    "louis vuitton": "LOUIS_VUITTON",
+    "lv": "LOUIS_VUITTON",
+    "LV": "LOUIS_VUITTON",
+    "offwhite": "OFF_WHITE",
+    "off-white": "OFF_WHITE",
+    "off white": "OFF_WHITE",
+    "virgil": "OFF_WHITE",
 
-  const handleSearch = (e) => {
-    e.preventDefault(); // Prevent form submission
+};
 
-    // Redirect to the desired endpoint using user's input
-    navigate(`/search?query=${searchInput}`);
-    setShowModal(false);
-  };
+const demographicMap = {
+    "mens": "MEN",
+    "womens": "WOMEN",
+    "kids": "KID",
+
+};
+
+const productTypeMap = {
+    "sneakers": "SNEAKER",
+    "clothes": "CLOTH",
+    "accessories": "ACCESSORY",
+    "apparel": "CLOTH",
+
+};
+const handleSearch = (e) => {
+  e.preventDefault(); // Prevent form submission
+  let finalSearchTerm = searchInput.trim().toLowerCase();
+
+  finalSearchTerm =
+    brandMap[finalSearchTerm] ||
+    demographicMap[finalSearchTerm] ||
+    productTypeMap[finalSearchTerm] ||
+    finalSearchTerm; // If no match, keep original
+  if (!searchInput.trim()) {
+    // If input is empty or only contains whitespace
+    setShowAlert(true);
+
+    // Reset the alert after 3 seconds
+    setTimeout(() => {
+      setShowAlert(false);
+    }, 3000);
+
+    return;
+  }
+
+  // Uncollapse the small navbar 
+  const navbarToggler = document.querySelector('.navbar-toggler');
+  const navbarCollapse = document.querySelector('.navbar-collapse');
+
+  if (navbarToggler && navbarCollapse.classList.contains('show')) {
+      navbarToggler.click();
+  }
+
+  // Redirect to the desired endpoint using user's input
+  navigate(`/search?query=${finalSearchTerm}`);
+  setShowModal(false);
+  setSearchInput(''); 
+};
 
   return (
     <div className="wholenav">
@@ -81,7 +148,7 @@ const Navbar = ({ cart, removeFromCart }) => {
             <span className="navbar-toggler-icon"></span>
           </button>
 
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+  <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item me-4 d-lg-none">
                 <a
@@ -92,7 +159,7 @@ const Navbar = ({ cart, removeFromCart }) => {
                   Search
                 </a>
               </li>
-              <li className="nav-item me-4">
+              <li className="nav-item me-4 ">
                 <a
                   className="nav-link active"
                   aria-current="page"
@@ -101,7 +168,7 @@ const Navbar = ({ cart, removeFromCart }) => {
                   New Arrivals
                 </a>
               </li>
-              <li className="nav-item me-4">
+              <li className="nav-item me-4 ">
                 <a
                   className="nav-link active"
                   aria-current="page"
@@ -159,7 +226,7 @@ const Navbar = ({ cart, removeFromCart }) => {
           <div
             className="modal show d-block"
             tabIndex="-1"
-            style={{ top: "-20%" }}
+            style={{ top: "-10%" }}
           >
             <div className="modal-dialog modal-dialog-centered">
               <div className="modal-content">
@@ -175,13 +242,24 @@ const Navbar = ({ cart, removeFromCart }) => {
                       placeholder="Search"
                       aria-label="Search"
                       value={searchInput}
-                      onChange={(e) => setSearchInput(e.target.value)}
+                      onChange={(e) => {
+                        setSearchInput(e.target.value);
+                        setShowAlert(false);
+                      }}
                     />
-
+                    {showAlert && (
+                      <div
+                        className="alert alert-dark searchalert col-8"
+                        role="alert"
+                      >
+                        Please Enter Product Information{" "}
+                      </div>
+                    )}
                     <div className="d-flex justify-content-end">
                       <button
                         className="btn btn-outline-success me-2"
                         type="submit"
+                        
                       >
                         Search
                       </button>
@@ -214,6 +292,11 @@ const Navbar = ({ cart, removeFromCart }) => {
             <h5 className="offcanvas-title" id="offcanvasRightLabel">
               Shopping Cart
             </h5>
+            {cart.length > 0 && (
+              <div className="cart-subtotal  ">
+                <strong>Subtotal:</strong> ${computeTotal()}
+              </div>
+            )}
             <button
               type="button"
               className="btn-close"
@@ -222,11 +305,7 @@ const Navbar = ({ cart, removeFromCart }) => {
             ></button>
           </div>
           <div className="offcanvas-body">
-            {cart.length > 0 && (
-              <div className="cart-subtotal mb-4 d-flex justify-content-center">
-                <strong>Subtotal:</strong> ${computeTotal()}
-              </div>
-            )}
+         
             {cart.length === 0 ? (
               <p>Your cart is empty.</p>
             ) : (
@@ -262,9 +341,14 @@ const Navbar = ({ cart, removeFromCart }) => {
             )}
             {cart.length > 0 && (
               <div className="d-flex justify-content-center">
-                <button type="button" class="btn btn-success col-6 mb-4">
-                  Checkout
-                </button>
+             <button 
+    type="button" 
+    class="btn btn-success col-6 mb-4" 
+    onClick={() => window.location.href="http://alfonzasportfolio.s3-website-us-east-1.amazonaws.com/"}
+>
+    Checkout
+</button>
+
               </div>
             )}
           </div>

@@ -4,6 +4,7 @@ import Hero from '../components/Hero';
 import HomeDemographics from '../components/HomeDemographics';
 import NewArrivals from '../components/HomeNewArrivals';
 import Footer from '../components/Footer';
+import HomeApparel from '../components/HomeApparel';
 
 
 const HomePage = () => {
@@ -13,7 +14,7 @@ const HomePage = () => {
 <Hero/>
 <HomeDemographics/>
 <NewArrivals/>
-
+<HomeApparel/>
     </div>
   );
 };

@@ -1,18 +1,14 @@
 import React, { useState, useEffect } from "react";
 import "../styles/HomeNewArrivals.css";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-function NewArrivals() {
+function HomeApparel() {
   const [sneakers, setSneakers] = useState([]);
   const [loading, setLoading] = useState(true);
-  const location = useLocation();
 
   useEffect(() => {
-    let endpoint = "http://localhost:8080/products/newArrivals";
-    if (location.pathname.startsWith("/products/")) {
-      endpoint = "http://localhost:8080/products/popular";
-    }
-
+    let endpoint = "http://localhost:8080/products/type/CLOTH";
+ 
     fetch(endpoint)
       .then((response) => response.json())
       .then((data) => {
@@ -23,25 +19,15 @@ function NewArrivals() {
         console.error("Error fetching data:", error);
         setLoading(false);
       });
-  }, [location.pathname]);
+  }, );
 
-  const title = location.pathname.startsWith("/products/")
-    ? "RECOMMENDED FOR YOU"
-    : "NEW ARRIVALS";
-
-  // Conditionally set the "View All" link based on the pathname
-  const viewAllLink = location.pathname.startsWith("/products/")
-    ? "/popular"
-    : "/newarrivals";
-
+ 
   return (
     <div className="container popular-releases-container">
       <div className="d-flex justify-content-between align-items-center">
-        <h3 className="popularReleasesTitle">{title}</h3>
-        <Link
-          to={viewAllLink}
-          className="viewa"
-        >
+        <h3 className="popularReleasesTitle">APPAREL</h3>
+        <Link to="/apparel" className="viewa">
+
           <span className="view-all-text">
             View All <i className="bi bi-arrow-right-short"></i>
           </span>
@@ -80,4 +66,4 @@ function NewArrivals() {
   );
 }
 
-export default NewArrivals;
+export default HomeApparel;
