@@ -40,6 +40,7 @@ const App = () => {
     const updatedCart = cart.filter((_, index) => index !== indexToRemove);
     setCart(updatedCart);
   };
+  const [searchInput, setSearchInput] = useState("");
 
 
   return (
@@ -57,6 +58,8 @@ const App = () => {
             <Route path="/clothes" element={<SneakerCardsData />} />
             <Route path="/accessories" element={<SneakerCardsData />} />
             <Route path="/onsale" element={<SneakerCardsData />} />
+            <Route path="/:searchQuery" element={<SneakerCardsData />} />
+
             <Route path="/products/:id" element={<ProductsPage cart={cart} addToCart={addToCart} removeFromCart={removeFromCart} />} />
           </Routes>
         </div>

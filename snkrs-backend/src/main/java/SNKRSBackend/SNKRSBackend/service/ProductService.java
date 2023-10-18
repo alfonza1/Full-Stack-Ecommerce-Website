@@ -8,6 +8,7 @@ import SNKRSBackend.SNKRSBackend.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -53,9 +54,11 @@ public class ProductService {
     public List<Product> getOnSaleProducts() {
         return productRepository.findBySaleTrue();
     }
+
     public List<Product> getProductsByType(ProductType productType) {
         return productRepository.findAllProductsByProductType(productType);
     }
+
     private void validateProduct(Product product) {
         if (product == null) {
             throw new IllegalArgumentException("Product cannot be null");
@@ -68,4 +71,29 @@ public class ProductService {
         }
     }
 
+    public List<Product> findByQueryAcrossFields(String query) {
+        if (query == null || query.trim().isEmpty()) {
+            return Collections.emptyList();
+        }
+        Brand brandEnum = null;
+        Demographic demographicEnum = null;
+        ProductType productTypeEnum = null;
+        try {
+            brandEnum = Brand.valueOf(query.toUpperCase());
+        } catch (IllegalArgumentException e) {}
+
+        try {
+            demographicEnum = Demographic.valueOf(query.toUpperCase());
+        } catch (IllegalArgumentException e) {}
+
+        try {
+            productTypeEnum = ProductType.valueOf(query.toUpperCase());
+        } catch (IllegalArgumentException e) {}
+
+        return productRepository.findByQueryAcrossFields(brandEnum, demographicEnum, productTypeEnum, query);
+    }
+
+    public void deleteAllProducts() {
+        productRepository.deleteAll();
+    }
 }

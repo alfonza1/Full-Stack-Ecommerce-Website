@@ -6,14 +6,13 @@ import "../styles/ProductPage.css";
 const ProductPage = ({ addToCart }) => {
   const { id } = useParams();
   const [sneaker, setSneaker] = useState({});
-  const [selectedSize, setSelectedSize] = useState("");
+  const [selectedSize, setSelectedSize] = useState(null);
   const [showAlert, setShowAlert] = useState(false);
   const [isButtonDisabled, setIsButtonDisabled] = useState(false); // State for button disabled state
   const [sizeAlert, setSizeAlert] = useState(false);
 
-
-  
   useEffect(() => {
+    setSelectedSize(null);
     Axios.get(`http://localhost:8080/products/${id}`)
       .then((response) => {
         setSneaker(response.data);
@@ -26,7 +25,7 @@ const ProductPage = ({ addToCart }) => {
   useEffect(() => {
     setTimeout(scrollToTop, 100); // 100ms delay
   }, []);
-  
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -109,21 +108,20 @@ const ProductPage = ({ addToCart }) => {
   };
 
   const capitalizeFirstLetter = (string) => {
-    if (!string) return '';  // Return an empty string if the input is falsy
-  
+    if (!string) return ""; // Return an empty string if the input is falsy
+
     return string
       .toLowerCase()
       .split(" ")
       .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
       .join(" ");
   };
-  
+
   return (
     <div className="container-fluid containerproductpage">
       <div className="row">
         {/* Navigation and images */}
-        <div className="col-12 col-xl-6 image-container">
-
+        <div className="col-xxl-7 col-xl-7 col-lg-7 col-md-10 col-sm-10 col-12 image-container">
           <img
             src={sneaker.photo}
             alt={sneaker.name}
@@ -131,9 +129,8 @@ const ProductPage = ({ addToCart }) => {
           />
           {/* Add your left and right arrows here */}
         </div>
-
-        <div className="col-12 col-xl-6 sneaker-details">
-          <p className="sneakbrand">
+        <div className="col-xxl-5 col-xl-5 col-lg-5 col-md-9 col-sm-6 col-12 sneaker-details">
+          <p className="sneakbrand mt-4">
             {sneaker.brand
               ? capitalizeFirstLetter(sneaker.brand.replace(/_/g, " "))
               : "Loading..."}

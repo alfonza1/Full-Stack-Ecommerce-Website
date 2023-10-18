@@ -10,10 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @CrossOrigin("*")
 @RestController
@@ -115,6 +112,12 @@ public class ProductController {
     public ResponseEntity<List<Product>> getProductsByType(@PathVariable ProductType productType) {
         return new ResponseEntity<>(productService.getProductsByType(productType), HttpStatus.OK);
     }
+    @GetMapping("/search")
+    public ResponseEntity<List<Product>> searchByUnifiedCriteria(@RequestParam String query) {
+        List<Product> results = productService.findByQueryAcrossFields(query);
+        return new ResponseEntity<>(results, HttpStatus.OK);
+    }
+
 
 
 }

@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Accordians from "../components/Accordians";
 import Releases from "../components/Releases";
 
 const SneakerCardsData = () => {
+
   return (
     <div>
-      <Releases />
+      
+      <Releases/>
     </div>
   );
 };

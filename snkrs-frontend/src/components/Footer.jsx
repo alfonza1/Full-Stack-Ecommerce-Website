@@ -34,9 +34,11 @@ const Footer = () => {
 
                 {/* Social Links Column */}
                 <div className="footer-column">
-                    <div className="footer-heading">FOLLOW ME ON</div>
+                    <div className="footer-heading">FIND ME ON</div>
                  <a href="https://github.com/alfonza1">  <div className="footer-item ">Github</div></a>
                    <a href="https://www.linkedin.com/in/alfonza-jones/"> <div className="footer-item">LinkedIn</div></a>
+                   <a href="http://alfonzasportfolio.s3-website-us-east-1.amazonaws.com/"> <div className="footer-item">Portfolio</div></a>
+
                 </div>
               
             </div>

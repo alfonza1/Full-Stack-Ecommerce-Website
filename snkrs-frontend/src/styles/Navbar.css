@@ -3,6 +3,16 @@
 body {
   font-family: Roboto, sans-serif;
 }
+/* The backdrop overlay */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1040;
+  background-color: rgba(0, 0, 0, 0.5); /* semi-transparent gray */
+}
 
 .offcanvas-bg {
   position: fixed;
@@ -81,6 +91,9 @@ cursor: pointer;
   margin-left: 2%;
 }
 
+.smallsearch{
+  cursor: pointer;
+}
 @media (max-width: 992px) {
   /* Your CSS rules go here */
   /* .bi-search{

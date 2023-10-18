@@ -33,12 +33,7 @@ function NewArrivals() {
   const viewAllLink = location.pathname.startsWith("/products/")
     ? "/popular"
     : "/newarrivals";
-    const scrollToTop = () => {
-      setTimeout(() => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }, 0); // Set the delay to 250 milliseconds (0.25 seconds)
-    };
-  
+
   return (
     <div className="container popular-releases-container">
       <div className="d-flex justify-content-between align-items-center">
@@ -46,7 +41,6 @@ function NewArrivals() {
         <Link
           to={viewAllLink}
           className="viewa"
-          onClick={scrollToTop} // Add this onClick handler
         >
           <span className="view-all-text">
             View All <i className="bi bi-arrow-right-short"></i>
@@ -66,7 +60,6 @@ function NewArrivals() {
               <Link
                 to={`/products/${sneaker.id}`}
                 style={{ textDecoration: "none" }}
-                onClick={scrollToTop}
               >
                 <div className="card newarrivalcards">
                   <img

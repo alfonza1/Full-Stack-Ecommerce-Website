@@ -1,14 +1,13 @@
 
-fix text in navbar, looks bad on smaller screens
+* fix text in navbar, looks bad on smaller screens
 
-fix nav bar search and shopping cart when smaller
+* hero images when smaller
 
-show only 6 home releases when screen is smaller... may not need 
+cmd errors when starting
 
-* product page doesnt scroll to top on small screens
+*4 letter name line breaks (kaws)
 
-
-
+*Search Validations
 
 READ ME NOTES
 
@@ -23,3 +22,5 @@ pagination to enhance performance
 responsive on all screen sizes 
 
 Live demo link
+
+how to post in postman 

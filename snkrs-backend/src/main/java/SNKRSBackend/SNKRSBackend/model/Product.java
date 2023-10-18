@@ -21,7 +21,6 @@ public class Product {
     private ProductType productType;
 
     @NotNull
-    @Column(name = "sneaker_name")
     private String name;
 
     @NotNull

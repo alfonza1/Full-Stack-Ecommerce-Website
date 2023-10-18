@@ -116,6 +116,9 @@ const Accordians = (props) => {
               ? "SALE"
               : window.location.pathname === "/accessories"
               ? "Accessories"
+              : window.location.pathname.startsWith("/search")
+              ? "Results"
+        
               : "Default Text"}
           </h3>
           {shouldRenderProductTypeAccordion && (

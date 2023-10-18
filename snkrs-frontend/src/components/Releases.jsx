@@ -3,16 +3,19 @@ import "../styles/Releases.css";
 import Accordians from "./Accordians";
 import Axios from "axios";
 import { Link } from "react-router-dom";
+import { useSearchParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
-const Releases = () => {
+function Releases() {
   const [sneakers, setSneakers] = useState([]);
   const [selectedDemographic, setSelectedDemographic] = useState("All");
   const [selectedProductType, setSelectedProductType] = useState("All");
   const [selectedBrand, setSelectedBrand] = useState("All");
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 16; // You can adjust this number based on your requirements
-
-  // ADD THE STUFF TO THE API AND FIX PAGINATION
+  const itemsPerPage = 16;
+  const [searchParams] = useSearchParams();
+  const searchTerm = searchParams.get('query');
+  
 
   useEffect(() => {
     let endpoint;
@@ -33,15 +36,18 @@ const Releases = () => {
       case "/newarrivals":
         endpoint = "http://localhost:8080/products/newArrivals";
         break;
-        case "/onsale":
-          endpoint = "http://localhost:8080/products/onSale";
-          break;
-          case "/accessories":
-            endpoint = "http://localhost:8080/products/type/ACCESSORY";
-            break;
-            case "/clothes":
-              endpoint = "http://localhost:8080/products/type/CLOTH";
-              break;
+      case "/onsale":
+        endpoint = "http://localhost:8080/products/onSale";
+        break;
+      case "/accessories":
+        endpoint = "http://localhost:8080/products/type/ACCESSORY";
+        break;
+      case "/clothes":
+        endpoint = "http://localhost:8080/products/type/CLOTH";
+        break;
+      case "/search":
+        endpoint = `http://localhost:8080/products/search?query=${searchTerm}`;
+        break;
       default:
         endpoint = "";
     }
@@ -50,12 +56,13 @@ const Releases = () => {
       Axios.get(endpoint)
         .then((response) => {
           setSneakers(response.data);
+          console.log(response.data);
         })
         .catch((error) => {
           console.error("Error fetching sneakers:", error);
         });
     }
-  }, []);
+  }, [searchTerm]);
 
   const filteredSneakers = sneakers.filter((sneaker) => {
     return (
@@ -67,14 +74,13 @@ const Releases = () => {
     );
   });
 
-  
   const indexOfLastSneaker = currentPage * itemsPerPage;
   const indexOfFirstSneaker = indexOfLastSneaker - itemsPerPage;
   const currentSneakers = filteredSneakers.slice(
     indexOfFirstSneaker,
     indexOfLastSneaker
   );
- 
+
   const capitalizeFirstLetter = (string) => {
     return string
       .toLowerCase()
@@ -97,7 +103,7 @@ const Releases = () => {
           <div className="row releasecards">
             {currentSneakers.map((sneaker) => (
               <div
-              className="col-6 col-xxl-3 col-xl-4 col-lg-4 col-md-6 col-sm-6 "
+                className="col-6 col-xxl-3 col-xl-4 col-lg-4 col-md-6 col-sm-6 "
                 key={sneaker.id}
               >
                 <Link
@@ -123,56 +129,56 @@ const Releases = () => {
         </div>
       </div>
       {filteredSneakers.length > 0 && (
-  <nav aria-label="Page navigation example" className="paginationbar">
-    <ul className="pagination">
-      <li className={`page-item ${currentPage === 1 ? "disabled" : ""}`}>
-        <a
-          className="page-link"
-          href="#"
-          aria-label="Previous"
-          onClick={() => setCurrentPage(currentPage - 1)}
-        >
-          <span aria-hidden="true">&laquo;</span>
-        </a>
-      </li>
-      {[...Array(Math.ceil(filteredSneakers.length / itemsPerPage))].map(
-        (_, index) => (
-          <li
-            className={`page-item ${
-              index + 1 === currentPage ? "active" : ""
-            }`}
-            key={index}
-          >
-            <a
-              className="page-link"
-              href="#"
-              onClick={() => setCurrentPage(index + 1)}
+        <nav aria-label="Page navigation example" className="paginationbar">
+          <ul className="pagination">
+            <li className={`page-item ${currentPage === 1 ? "disabled" : ""}`}>
+              <a
+                className="page-link"
+                href="#"
+                aria-label="Previous"
+                onClick={() => setCurrentPage(currentPage - 1)}
+              >
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            {[...Array(Math.ceil(filteredSneakers.length / itemsPerPage))].map(
+              (_, index) => (
+                <li
+                  className={`page-item ${
+                    index + 1 === currentPage ? "active" : ""
+                  }`}
+                  key={index}
+                >
+                  <a
+                    className="page-link"
+                    href="#"
+                    onClick={() => setCurrentPage(index + 1)}
+                  >
+                    {index + 1}
+                  </a>
+                </li>
+              )
+            )}
+            <li
+              className={`page-item ${
+                currentPage ===
+                Math.ceil(filteredSneakers.length / itemsPerPage)
+                  ? "disabled"
+                  : ""
+              }`}
             >
-              {index + 1}
-            </a>
-          </li>
-        )
+              <a
+                className="page-link"
+                href="#"
+                aria-label="Next"
+                onClick={() => setCurrentPage(currentPage + 1)}
+              >
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
       )}
-      <li
-        className={`page-item ${
-          currentPage === Math.ceil(filteredSneakers.length / itemsPerPage)
-            ? "disabled"
-            : ""
-        }`}
-      >
-        <a
-          className="page-link"
-          href="#"
-          aria-label="Next"
-          onClick={() => setCurrentPage(currentPage + 1)}
-        >
-          <span aria-hidden="true">&raquo;</span>
-        </a>
-      </li>
-    </ul>
-  </nav>
-)}
-
     </div>
   );
 };
