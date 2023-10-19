@@ -19,7 +19,6 @@
 
 .sneaker-name {
   font-size: 18px;  /* Adjust as needed to fit the text on one line */
-  max-width: 95%; /* You might need to adjust this value */
   color: black;
 }
 
