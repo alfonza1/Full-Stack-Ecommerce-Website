@@ -1,3 +1,5 @@
+
+
 .releasecards {
   margin-top: 140px;
   margin-bottom: 100px;
@@ -20,6 +22,7 @@
 .sneaker-name {
   font-size: 18px;  /* Adjust as needed to fit the text on one line */
   color: black;
+  font-family: Roboto;
 }
 
 @media (max-width: 575.98px) {

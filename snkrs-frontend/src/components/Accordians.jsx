@@ -11,7 +11,7 @@ const Accordians = (props) => {
   const [demographic, setDemographic] = useState([]);
 
   useEffect(() => {
-    Axios.get("http://localhost:8080/products/brands")
+    Axios.get("https://m8ykv8u2l4.execute-api.us-east-1.amazonaws.com/prod/products/brands")
       .then((response) => {
         setBrands(response.data);
       })
@@ -22,7 +22,7 @@ const Accordians = (props) => {
   }, []);
 
   useEffect(() => {
-    Axios.get("http://localhost:8080/products/producttypes")
+    Axios.get("https://m8ykv8u2l4.execute-api.us-east-1.amazonaws.com/prod/products/producttypes")
       .then((response) => {
         setProductType(response.data);
       })
@@ -32,7 +32,7 @@ const Accordians = (props) => {
       });
   }, []);
   useEffect(() => {
-    Axios.get("http://localhost:8080/products/demographics")
+    Axios.get("https://m8ykv8u2l4.execute-api.us-east-1.amazonaws.com/prod/products/demographics")
       .then((response) => {
         setDemographic(response.data);
       })

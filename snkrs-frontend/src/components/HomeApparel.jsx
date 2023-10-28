@@ -7,7 +7,7 @@ function HomeApparel() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    let endpoint = "http://localhost:8080/products/type/CLOTH";
+    let endpoint = "https://m8ykv8u2l4.execute-api.us-east-1.amazonaws.com/prod/products/type/CLOTH";
  
     fetch(endpoint)
       .then((response) => response.json())

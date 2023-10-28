@@ -37,80 +37,77 @@ const Navbar = ({ cart, removeFromCart }) => {
       document.body.style.overflow = "auto";
     };
   }, [showModal]);
-  
+
   const brandMap = {
-    "adidas": "ADIDAS",
-    "nikes": "NIKE",
-    "pumas": "PUMA",
-    "jordans": "AIR_JORDAN",
-    "jordan": "AIR_JORDAN",
-    "retros": "AIR_JORDAN",
-    "Js": "AIR_JORDAN",
-    "retro": "AIR_JORDAN",
-    "kanye": "YEEZY",
-    "yeezys": "YEEZY",
-    "guccis": "GUCCI",
-    "diors": "DIOR",
-    "balenciagas": "BALENCIAGA",
-    "louisvuittons": "LOUIS_VUITTON",
+    adidas: "ADIDAS",
+    nikes: "NIKE",
+    pumas: "PUMA",
+    jordans: "AIR_JORDAN",
+    jordan: "AIR_JORDAN",
+    retros: "AIR_JORDAN",
+    Js: "AIR_JORDAN",
+    retro: "AIR_JORDAN",
+    kanye: "YEEZY",
+    yeezys: "YEEZY",
+    guccis: "GUCCI",
+    diors: "DIOR",
+    balenciagas: "BALENCIAGA",
+    louisvuittons: "LOUIS_VUITTON",
     "louis vuitton": "LOUIS_VUITTON",
-    "lv": "LOUIS_VUITTON",
-    "LV": "LOUIS_VUITTON",
-    "offwhite": "OFF_WHITE",
+    lv: "LOUIS_VUITTON",
+    LV: "LOUIS_VUITTON",
+    offwhite: "OFF_WHITE",
     "off-white": "OFF_WHITE",
     "off white": "OFF_WHITE",
-    "virgil": "OFF_WHITE",
+    virgil: "OFF_WHITE",
+  };
 
-};
+  const demographicMap = {
+    mens: "MEN",
+    womens: "WOMEN",
+    kids: "KID",
+  };
 
-const demographicMap = {
-    "mens": "MEN",
-    "womens": "WOMEN",
-    "kids": "KID",
+  const productTypeMap = {
+    sneakers: "SNEAKER",
+    clothes: "CLOTH",
+    accessories: "ACCESSORY",
+    apparel: "CLOTH",
+  };
+  const handleSearch = (e) => {
+    e.preventDefault(); // Prevent form submission
+    let finalSearchTerm = searchInput.trim().toLowerCase();
 
-};
+    finalSearchTerm =
+      brandMap[finalSearchTerm] ||
+      demographicMap[finalSearchTerm] ||
+      productTypeMap[finalSearchTerm] ||
+      finalSearchTerm; // If no match, keep original
+    if (!searchInput.trim()) {
+      // If input is empty or only contains whitespace
+      setShowAlert(true);
 
-const productTypeMap = {
-    "sneakers": "SNEAKER",
-    "clothes": "CLOTH",
-    "accessories": "ACCESSORY",
-    "apparel": "CLOTH",
+      // Reset the alert after 3 seconds
+      setTimeout(() => {
+        setShowAlert(false);
+      }, 3000);
 
-};
-const handleSearch = (e) => {
-  e.preventDefault(); // Prevent form submission
-  let finalSearchTerm = searchInput.trim().toLowerCase();
+      return;
+    }
 
-  finalSearchTerm =
-    brandMap[finalSearchTerm] ||
-    demographicMap[finalSearchTerm] ||
-    productTypeMap[finalSearchTerm] ||
-    finalSearchTerm; // If no match, keep original
-  if (!searchInput.trim()) {
-    // If input is empty or only contains whitespace
-    setShowAlert(true);
+    // Uncollapse the small navbar
+    const navbarToggler = document.querySelector(".navbar-toggler");
+    const navbarCollapse = document.querySelector(".navbar-collapse");
 
-    // Reset the alert after 3 seconds
-    setTimeout(() => {
-      setShowAlert(false);
-    }, 3000);
-
-    return;
-  }
-
-  // Uncollapse the small navbar 
-  const navbarToggler = document.querySelector('.navbar-toggler');
-  const navbarCollapse = document.querySelector('.navbar-collapse');
-
-  if (navbarToggler && navbarCollapse.classList.contains('show')) {
+    if (navbarToggler && navbarCollapse.classList.contains("show")) {
       navbarToggler.click();
-  }
+    }
 
-  // Redirect to the desired endpoint using user's input
-  navigate(`/search?query=${finalSearchTerm}`);
-  setShowModal(false);
-  setSearchInput(''); 
-};
+    // Redirect to the desired endpoint using user's input
+    navigate(`/search?query=${finalSearchTerm}`);
+    setShowModal(false);
+    setSearchInput("");
+  };
 
   return (
     <div className="wholenav">
@@ -148,7 +145,7 @@ const handleSearch = (e) => {
             <span className="navbar-toggler-icon"></span>
           </button>
 
-  <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item me-4 d-lg-none">
                 <a
@@ -259,7 +256,6 @@ const handleSearch = (e) => {
                       <button
                         className="btn btn-outline-success me-2"
                         type="submit"
-                        
                       >
                         Search
                       </button>
@@ -305,7 +301,6 @@ const handleSearch = (e) => {
             ></button>
           </div>
           <div className="offcanvas-body">
-         
             {cart.length === 0 ? (
               <p>Your cart is empty.</p>
             ) : (
@@ -323,7 +318,11 @@ const handleSearch = (e) => {
                       alt={item.name}
                       style={{ width: "150px", height: "100px" }}
                     />
-                    <h5>{item.name}</h5>
+                    <h5>
+                      {item.demographic === "KID"
+                        ? `GS ${item.name}`
+                        : item.name}
+                    </h5>
                     <p>Size: {item.selectedSize}</p>
                     <p>${item.price}</p>
                   </a>
@@ -341,14 +340,16 @@ const handleSearch = (e) => {
             )}
             {cart.length > 0 && (
               <div className="d-flex justify-content-center">
-             <button 
-    type="button" 
-    class="btn btn-success col-6 mb-4" 
-    onClick={() => window.location.href="http://alfonzasportfolio.s3-website-us-east-1.amazonaws.com/"}
->
-    Checkout
-</button>
-
+                <button
+                  type="button"
+                  class="btn btn-success col-6 mb-4"
+                  onClick={() =>
+                    (window.location.href =
+                      "http://alfonzasportfolio.s3-website-us-east-1.amazonaws.com/")
+                  }
+                >
+                  Checkout
+                </button>
               </div>
             )}
           </div>

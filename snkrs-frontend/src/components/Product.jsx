@@ -13,7 +13,7 @@ const ProductPage = ({ addToCart }) => {
 
   useEffect(() => {
     setSelectedSize(null);
-    Axios.get(`http://localhost:8080/products/${id}`)
+    Axios.get(`https://m8ykv8u2l4.execute-api.us-east-1.amazonaws.com/prod/products/${id}`)
       .then((response) => {
         setSneaker(response.data);
       })
@@ -136,7 +136,7 @@ const ProductPage = ({ addToCart }) => {
               : "Loading..."}
           </p>
 
-          <h3>{sneaker.name}</h3>
+          <h3>{sneaker.demographic === "KID" ? `GS ${sneaker.name}` : sneaker.name}</h3>
           <p>{sneaker.demographic}</p>
           <p>${sneaker.price}</p>
 

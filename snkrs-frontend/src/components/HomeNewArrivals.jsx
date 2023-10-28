@@ -6,11 +6,12 @@ function NewArrivals() {
   const [sneakers, setSneakers] = useState([]);
   const [loading, setLoading] = useState(true);
   const location = useLocation();
+  const [showLoading, setShowLoading] = useState(false);
 
   useEffect(() => {
-    let endpoint = "http://localhost:8080/products/newArrivals";
+    let endpoint = "https://m8ykv8u2l4.execute-api.us-east-1.amazonaws.com/prod/products/newArrivals";
     if (location.pathname.startsWith("/products/")) {
-      endpoint = "http://localhost:8080/products/popular";
+      endpoint = "https://m8ykv8u2l4.execute-api.us-east-1.amazonaws.com/prod/products/popular";
     }
 
     fetch(endpoint)
@@ -34,6 +35,16 @@ function NewArrivals() {
     ? "/popular"
     : "/newarrivals";
 
+    useEffect(() => {
+      const timer = setTimeout(() => {
+        setShowLoading(true);
+      }, 100); // 1 second = 1000 milliseconds
+  
+      return () => clearTimeout(timer);  // cleanup timer if component is unmounted
+  }, []);  // empty dependency array means this effect runs once when component mounts
+  
+  
+
   return (
     <div className="container popular-releases-container">
       <div className="d-flex justify-content-between align-items-center">
@@ -47,10 +58,13 @@ function NewArrivals() {
           </span>
         </Link>
       </div>
-
-      {loading ? ( // Display loading indicator while fetching data
-        <p>Loading...</p>
-      ) : (
+      {showLoading && sneakers.length === 0 && (
+                <>
+                    <h4 className="noproducts mt-4">No products found</h4>
+                    <NewArrivals />
+                </>
+            )}
+      
         <div className="row sneaker-cards">
           {sneakers.map((sneaker, index) => (
             <div
@@ -68,14 +82,14 @@ function NewArrivals() {
                     alt={sneaker.name}
                   />
                   <div className="card-body">
-                    <p className="card-text">{sneaker.name}</p>
+                    <p className="card-text">{sneaker.demographic === "KID" ? `GS ${sneaker.name}` : sneaker.name}</p>
                   </div>
                 </div>
               </Link>
             </div>
           ))}
         </div>
-      )}
+   
     </div>
   );
 }

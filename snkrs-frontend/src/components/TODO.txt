@@ -21,6 +21,10 @@ pagination to enhance performance
 
 responsive on all screen sizes 
 
+working shopping cart
+
+api uses spring boot, s3, lambda, cloud formation,iam,aws api gateway, amazon rds db,SAM CLI
+
 Live demo link
 
-how to post in postman 
+how to post in postman
