@@ -38,6 +38,7 @@
   color: black;
 }
 
+
 .size-selector {
   display: grid;
   grid-template-columns: repeat(6, 0.09fr);
@@ -49,12 +50,13 @@
   cursor: pointer;
   transition: background-color 0.3s;
   text-align: center;
-
   width: 55px; 
   height: 40px;
   display: flex;
   justify-content: center;
   align-items: center; 
+  text-decoration: none !important;
+  color: black;
 }
 
 

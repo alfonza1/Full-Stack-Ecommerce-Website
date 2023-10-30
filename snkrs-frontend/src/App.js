@@ -10,6 +10,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css'; // Import the Bootstrap Icons
 import ProductsPage from './pages/ProductsPage';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import PostSneaker from './components/PostSneaker';
 import './App.css';
 
 import {
@@ -59,8 +60,8 @@ const App = () => {
             <Route path="/accessories" element={<SneakerCardsData />} />
             <Route path="/onsale" element={<SneakerCardsData />} />
             <Route path="/:searchQuery" element={<SneakerCardsData />} />
-
             <Route path="/products/:id" element={<ProductsPage cart={cart} addToCart={addToCart} removeFromCart={removeFromCart} />} />
+            <Route path="/post" element ={<PostSneaker/>}/>
           </Routes>
         </div>
         <Footer/>

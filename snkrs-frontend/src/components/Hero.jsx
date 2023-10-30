@@ -59,8 +59,6 @@ class Hero extends Component {
                 ></div>
               ))}
             </div>
-
-            <div className="dot">.</div>
           </div>
         </div>
       </div>

@@ -43,8 +43,33 @@ function NewArrivals() {
       return () => clearTimeout(timer);  // cleanup timer if component is unmounted
   }, []);  // empty dependency array means this effect runs once when component mounts
   
+  useEffect(() => {
+    if (sneakers.length === 0) {
+      const timeoutId = setTimeout(() => {
+        window.location.reload();
+      }, 3000);
   
+      // Clear timeout when component is unmounted or if condition changes
+      return () => clearTimeout(timeoutId);
+    }
+  }, [sneakers]);
 
+  function capitalizeWords(str) {
+    return str
+        .toLowerCase()
+        .split(/\s+/) // Split on any whitespace character
+        .map((word) => {
+            // Check if the word has any type of apostrophe and capitalize appropriately
+            if (word.includes("'") || word.includes("‘") || word.includes("’")) {
+                return word
+                    .split(/('|‘|’)/)
+                    .map((segment) => segment.charAt(0).toUpperCase() + segment.slice(1))
+                    .join("");
+            }
+            return word.charAt(0).toUpperCase() + word.slice(1);
+        })
+        .join(' ');
+}
   return (
     <div className="container popular-releases-container">
       <div className="d-flex justify-content-between align-items-center">
@@ -58,13 +83,7 @@ function NewArrivals() {
           </span>
         </Link>
       </div>
-      {showLoading && sneakers.length === 0 && (
-                <>
-                    <h4 className="noproducts mt-4">No products found</h4>
-                    <NewArrivals />
-                </>
-            )}
-      
+    
         <div className="row sneaker-cards">
           {sneakers.map((sneaker, index) => (
             <div
@@ -82,7 +101,8 @@ function NewArrivals() {
                     alt={sneaker.name}
                   />
                   <div className="card-body">
-                    <p className="card-text">{sneaker.demographic === "KID" ? `GS ${sneaker.name}` : sneaker.name}</p>
+                    <p className="card-text"> {sneaker.demographic === "WOMEN" ? capitalizeWords(`WMNS ${sneaker.name}`) : 
+  (sneaker.demographic === "KID" ? capitalizeWords(`GS ${sneaker.name}`) : capitalizeWords(sneaker.name))}</p>
                   </div>
                 </div>
               </Link>

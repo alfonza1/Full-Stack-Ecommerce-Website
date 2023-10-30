@@ -1,9 +1,8 @@
-
-
 .releasecards {
+  position: relative;
   margin-top: 140px;
   margin-bottom: 100px;
-  
+  left: 10px;
 }
 
 /* // dont forge acc */
@@ -19,10 +18,15 @@
   position: relative;
 }
 
+
+
 .sneaker-name {
-  font-size: 18px;  /* Adjust as needed to fit the text on one line */
+  font-size: 16px; /* Adjust as needed to fit the text on one line */
   color: black;
   font-family: Roboto;
+  overflow: hidden;
+  max-height: 3em; /* Adjust based on your design, assuming a 2 line title */
+
 }
 
 @media (max-width: 575.98px) {

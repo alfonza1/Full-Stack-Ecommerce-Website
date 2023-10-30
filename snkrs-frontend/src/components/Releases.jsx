@@ -4,6 +4,8 @@ import Accordians from "./Accordians";
 import Axios from "axios";
 import { Link, useSearchParams } from 'react-router-dom';
 import NewArrivals from "./HomeNewArrivals";
+import { Navigate } from 'react-router-dom';
+
 
 function Releases() {
   const [sneakers, setSneakers] = useState([]);
@@ -11,12 +13,14 @@ function Releases() {
   const [selectedProductType, setSelectedProductType] = useState("All");
   const [selectedBrand, setSelectedBrand] = useState("All");
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 20;
+  const itemsPerPage = 16;
   const [searchParams] = useSearchParams();
   const searchTerm = searchParams.get('query');
   const [showNoProducts, setShowNoProducts] = useState(false);
   const [hasReloaded, setHasReloaded] = useState(false);
 
+
+  
   const getEndpoint = (path) => {
     const endpoints = {
       "/popular": "/products/popular",
@@ -32,6 +36,7 @@ function Releases() {
 
     return `https://m8ykv8u2l4.execute-api.us-east-1.amazonaws.com/prod${endpoints[path] || ""}`;
   };
+
 
   useEffect(() => {
     const endpoint = getEndpoint(window.location.pathname);
@@ -74,9 +79,38 @@ function Releases() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowNoProducts(true);
-    }, 500);
+    }, 300);
     return () => clearTimeout(timer);
   }, []);
+
+
+  function capitalizeWords(str) {
+    return str
+        .toLowerCase()
+        .split(/\s+/) // Split on any whitespace character
+        .map((word) => {
+            // Check if the word has any type of apostrophe and capitalize appropriately
+            if (word.includes("'") || word.includes("‘") || word.includes("’")) {
+                return word
+                    .split(/('|‘|’)/)
+                    .map((segment) => segment.charAt(0).toUpperCase() + segment.slice(1))
+                    .join("");
+            }
+            return word.charAt(0).toUpperCase() + word.slice(1);
+        })
+        .join(' ');
+}
+
+useEffect(() => {
+  if (currentSneakers.length === 0) {
+    const timeoutId = setTimeout(() => {
+      window.location.reload();
+    }, 3000);
+
+    // Clear timeout when component is unmounted or if condition changes
+    return () => clearTimeout(timeoutId);
+  }
+}, [currentSneakers]);
 
   return (
     <div className="container">
@@ -99,13 +133,14 @@ function Releases() {
             {currentSneakers.map((sneaker) => (
               
               <div className="col-6 col-xxl-3 col-xl-4 col-lg-4 col-md-6 col-sm-6" key={sneaker.id}>
-                <Link to={`/products/${sneaker.id}`} style={{ textDecoration: "none" }}>
+<Link to={`/products/${sneaker.id}`} style={{ textDecoration: "none" }}>
                   <div className="card releasecard">
                     <img src={sneaker.photo} className="card-img-top card-img-custom" alt={sneaker.name} />
                     <div className="card-body">
                       <p className="card-title sneaker-name">
-                        {sneaker.demographic === "KID" ? `GS ${sneaker.name}` : sneaker.name}
-                      </p>
+  {sneaker.demographic === "WOMEN" ? capitalizeWords(`WMNS ${sneaker.name}`) : 
+  (sneaker.demographic === "KID" ? capitalizeWords(`GS ${sneaker.name}`) : capitalizeWords(sneaker.name))}
+</p>
                       <p className="card-text sneaker-name">${sneaker.price}</p>
                     </div>
                   </div>

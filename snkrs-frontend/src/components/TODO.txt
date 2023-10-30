@@ -1,13 +1,11 @@
+TO DO
+ fix sneaker card text when smaller
 
-* fix text in navbar, looks bad on smaller screens
 
-* hero images when smaller
 
-cmd errors when starting
 
-*4 letter name line breaks (kaws)
 
-*Search Validations
+
 
 READ ME NOTES
 

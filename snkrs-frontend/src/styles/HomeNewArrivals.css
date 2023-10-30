@@ -47,9 +47,9 @@ font-size: 18px;
   display: block; /* remove any unwanted white space */
 }
 
+@media (min-width: 700px) {
 
-@media (min-width: 993px) {
+.card-img-top {
+  height: 250px; /* Fixed height for images. You can adjust as needed */
 
-.card-body{
-  margin-bottom: 75px;
-}}
+} }

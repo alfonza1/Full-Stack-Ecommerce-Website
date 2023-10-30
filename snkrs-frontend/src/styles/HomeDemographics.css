@@ -22,7 +22,7 @@
 .demographicCards{
   width: 100%; /* This reduces the card's width to 80% of its container. Adjust as needed. */
   margin: 0 auto; 
-  margin-top: 50px;
+  /* margin-top: 50px; */
 }
 
 .demographicName {
@@ -100,5 +100,14 @@
 @media (min-width: 1200px) { 
   .card {
     font-size: 1.3rem; 
+  }
+}
+
+
+@media (min-width: 700px) { 
+  .demographicCards{
+    width: 100%; /* This reduces the card's width to 80% of its container. Adjust as needed. */
+    margin: 0 auto; 
+    margin-top: 50px;
   }
 }

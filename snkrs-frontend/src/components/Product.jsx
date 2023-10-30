@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import Axios from "axios";
 import "../styles/ProductPage.css";
 
+
 const ProductPage = ({ addToCart }) => {
   const { id } = useParams();
   const [sneaker, setSneaker] = useState({});
@@ -11,6 +12,7 @@ const ProductPage = ({ addToCart }) => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(false); // State for button disabled state
   const [sizeAlert, setSizeAlert] = useState(false);
 
+  
   useEffect(() => {
     setSelectedSize(null);
     Axios.get(`https://m8ykv8u2l4.execute-api.us-east-1.amazonaws.com/prod/products/${id}`)
@@ -22,6 +24,17 @@ const ProductPage = ({ addToCart }) => {
       });
   }, [id]);
 
+  useEffect(() => {
+    if (sneaker.length === 0) {
+      const timeoutId = setTimeout(() => {
+        window.location.reload();
+      }, 4000);
+
+      // Clear timeout when component is unmounted or if condition changes
+      return () => clearTimeout(timeoutId);
+    }
+  }, [sneaker]);
+  
   useEffect(() => {
     setTimeout(scrollToTop, 100); // 100ms delay
   }, []);
@@ -93,19 +106,27 @@ const ProductPage = ({ addToCart }) => {
     };
 
     addToCart(selectedItem);
-    setShowAlert(true);
-    setIsButtonDisabled(true);
 
-    // Hide the "Added to Cart Successfully" alert after 3 seconds
-    setTimeout(() => {
-      setShowAlert(false);
-    }, 3000);
+const currentUrl = window.location.pathname + "?addedToCart=true";
+window.history.replaceState(null, null, currentUrl);
+window.location.reload();
+};
 
-    // Enable the "Add to Cart" button after 3 seconds
-    setTimeout(() => {
-      setIsButtonDisabled(false);
-    }, 3000);
-  };
+// Somewhere at the top of your component, after initializing states:
+useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+
+    if (params.get('addedToCart')) {
+        setShowAlert(true);
+
+        // Hide the "Added to Cart Successfully" alert after 3 seconds
+        setTimeout(() => {
+            setShowAlert(false);
+        }, 3000);
+    }
+}, []);
+
+
 
   const capitalizeFirstLetter = (string) => {
     if (!string) return ""; // Return an empty string if the input is falsy
@@ -136,7 +157,8 @@ const ProductPage = ({ addToCart }) => {
               : "Loading..."}
           </p>
 
-          <h3>{sneaker.demographic === "KID" ? `GS ${sneaker.name}` : sneaker.name}</h3>
+          <h3>{sneaker.demographic === "WOMEN" ? `WMNS ${sneaker.name}` : 
+ (sneaker.demographic === "KID" ? `GS ${sneaker.name}` : sneaker.name)}</h3>
           <p>{sneaker.demographic}</p>
           <p>${sneaker.price}</p>
 
@@ -160,7 +182,6 @@ const ProductPage = ({ addToCart }) => {
               </button>
             ))}
           </div>
-
           <div>
             <button
               className="add-to-cart-btn "
