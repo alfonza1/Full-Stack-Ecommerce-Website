@@ -1,12 +1,15 @@
-<h1 align="center">SNKRS eCommerce Website - Proof of Concept</h1>
-
-<p align="center">
-  <img src="https://alfonzasportfolio.s3.amazonaws.com/SNKRSPhoto.png" alt="SNKRS Website Screenshot" />
-</p>
-
-<p align="center">
+<h1 align="center">SNKRS eCommerce Website - Proof of Concept</h1> <p align="center">
   <a href="http://snkrs-official-ui.s3-website-us-east-1.amazonaws.com/">Live Demo</a>
 </p>
+
+<p align="center">
+  <a href="http://snkrs-official-ui.s3-website-us-east-1.amazonaws.com/">
+    <img src="https://alfonzasportfolio.s3.amazonaws.com/SNKRSPhoto.png" alt="SNKRS Website Screenshot" width="700" />
+  </a>
+</p>
+
+
+
 
 ## Welcome to SNKRS!
 
