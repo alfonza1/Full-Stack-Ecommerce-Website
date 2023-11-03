@@ -2,23 +2,33 @@
   position: relative;
   margin-top: 140px;
   margin-bottom: 100px;
-  left: 10px;
 }
 
-/* // dont forge acc */
+@media (min-width: 900.98px) {
+  .releasecards {
+    position: relative;
+    left: 10px;
+  }
+}
+@media (min-width: 900.98px) {
+  .card-img-custom {
+    height: 180px; /* Adjust the height value as needed to make the image longer */
+    width: auto !important;
+    object-fit: cover !important; /* Maintain aspect ratio and cover the container */
+  }
+}
 
+.releasecard{
+  margin: 1rem; 
+
+}
 /* CSS */
 .card-img-custom {
-  height: 180px; /* Adjust the height value as needed to make the image longer */
-  width: auto;
-  object-fit: cover; /* Maintain aspect ratio and cover the container */
+  width: 180px;
 }
-
 .paginationbar {
   position: relative;
 }
-
-
 
 .sneaker-name {
   font-size: 16px; /* Adjust as needed to fit the text on one line */
@@ -26,7 +36,6 @@
   font-family: Roboto;
   overflow: hidden;
   max-height: 3em; /* Adjust based on your design, assuming a 2 line title */
-
 }
 
 @media (max-width: 575.98px) {

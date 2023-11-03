@@ -51,7 +51,7 @@ function HomeApparel() {
       </div>
 
       {loading ? ( // Display loading indicator while fetching data
-        <p>Loading...</p>
+        <h4>Loading...</h4>
       ) : (
         <div className="row sneaker-cards">
           {sneakers.map((sneaker, index) => (

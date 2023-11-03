@@ -28,7 +28,7 @@ const ProductPage = ({ addToCart }) => {
     if (sneaker.length === 0) {
       const timeoutId = setTimeout(() => {
         window.location.reload();
-      }, 4000);
+      }, 8000);
 
       // Clear timeout when component is unmounted or if condition changes
       return () => clearTimeout(timeoutId);

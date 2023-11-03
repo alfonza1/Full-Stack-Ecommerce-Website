@@ -8,7 +8,7 @@ function HomeDemographics() {
     <div className="container-fluid">
       <div className="row card-list">
         {HomeDemographicmages.getAllCategories().map((category, index) => (
-          <div className="col-6 col-xxl-2 col-xl-6 col-lg-6 col-md-6 col-sm-6  " key={index}>
+          <div className="col-6 col-xxl-2 col-xl-4 col-lg-6 col-md-6 col-sm-6  " key={index}>
             <div className="card demographicCards">
               <a href={category.href}>
               <img src={category.imageSrc} className="card-img-top" alt={category.demographic} />

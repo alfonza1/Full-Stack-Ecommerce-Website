@@ -6,7 +6,6 @@
 
 .card {
   flex: 1; 
-  margin: 1rem; 
   border: none; 
   display: flex;
   flex-direction: column;
@@ -15,8 +14,6 @@
   text-align: center;
   font-size: 1.21rem;
 }
-
-
 
 
 .demographicCards{

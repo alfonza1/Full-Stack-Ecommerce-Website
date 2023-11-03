@@ -1,6 +1,6 @@
 .popular-releases-container {
   margin-top: 80px;
-  margin-bottom: 150px;
+  margin-bottom: 130px;
 
 }
 
@@ -32,6 +32,8 @@ text-decoration: none;
 color: rgb(58, 58, 58);
 font-size: 18px;
 }
+
+
 .newarrivalcards {
   color: black;
   display: flex; /* ensure the card content is centered */
@@ -49,7 +51,7 @@ font-size: 18px;
 
 @media (min-width: 700px) {
 
-.card-img-top {
+.cardimg {
   height: 250px; /* Fixed height for images. You can adjust as needed */
 
 } }

@@ -21,6 +21,19 @@ function Releases() {
 
 
   
+
+  
+
+  const filteredSneakers = sneakers.filter((sneaker) => (
+    (selectedDemographic === "All" || sneaker.demographic === selectedDemographic) &&
+    (selectedProductType === "All" || sneaker.productType === selectedProductType) &&
+    (selectedBrand === "All" || sneaker.brand === selectedBrand)
+  ));
+
+  const indexOfLastSneaker = currentPage * itemsPerPage;
+  const indexOfFirstSneaker = indexOfLastSneaker - itemsPerPage;
+  const currentSneakers = filteredSneakers.slice(indexOfFirstSneaker, indexOfLastSneaker);
+
   const getEndpoint = (path) => {
     const endpoints = {
       "/popular": "/products/popular",
@@ -58,18 +71,6 @@ function Releases() {
     }
 }, [searchTerm]);
 
-  
-
-  const filteredSneakers = sneakers.filter((sneaker) => (
-    (selectedDemographic === "All" || sneaker.demographic === selectedDemographic) &&
-    (selectedProductType === "All" || sneaker.productType === selectedProductType) &&
-    (selectedBrand === "All" || sneaker.brand === selectedBrand)
-  ));
-
-  const indexOfLastSneaker = currentPage * itemsPerPage;
-  const indexOfFirstSneaker = indexOfLastSneaker - itemsPerPage;
-  const currentSneakers = filteredSneakers.slice(indexOfFirstSneaker, indexOfLastSneaker);
-
   useEffect(() => {
     setTimeout(() => {
       window.scrollTo({ top: 0, behavior: "smooth" });
@@ -102,15 +103,21 @@ function Releases() {
 }
 
 useEffect(() => {
-  if (currentSneakers.length === 0) {
+  const endpoint = getEndpoint(window.location.pathname);
+
+  // Check if there are query parameters in the URL
+  const hasQueryParameters = window.location.search !== '';
+
+  if (currentSneakers.length === 0 && !hasQueryParameters) {
     const timeoutId = setTimeout(() => {
       window.location.reload();
-    }, 3000);
+    }, 8000);
 
     // Clear timeout when component is unmounted or if condition changes
     return () => clearTimeout(timeoutId);
   }
 }, [currentSneakers]);
+
 
   return (
     <div className="container">

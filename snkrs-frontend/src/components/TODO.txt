@@ -1,19 +1,18 @@
 TO DO
- fix sneaker card text when smaller
 
+faster pagination, only fetch whats needed
 
+use effect each product page
 
+search no results reloading
 
-
-
+demograph text on laptops
 
 READ ME NOTES
 
-conditionally renders accordians based on what page the customer is on(example product type doesnt show when on accessories page)
+all products are fetched from api that fetches the data from a database
 
-all products are fetched from api
-
-used react,spring boot,mysql
+used react,spring boot,mysql, aws lambda,api gateway, amazon rds
 
 pagination to enhance performance
 
@@ -21,7 +20,11 @@ responsive on all screen sizes
 
 working shopping cart
 
+product filtering
+
 api uses spring boot, s3, lambda, cloud formation,iam,aws api gateway, amazon rds db,SAM CLI
+
+the api in this repo is NOT the deployed api, my deployed api is in a private repo
 
 Live demo link
 

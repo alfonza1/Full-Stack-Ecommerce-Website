@@ -35,7 +35,7 @@ const PostSneaker = () => {
       .then(response => {
         console.log("Successfully posted:", response.data);
         alert("Sneaker successfully posted!");
-        window.location.reload();  // This line will refresh the page
+        window.location.reload(); 
 
       })
       .catch(error => {

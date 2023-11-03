@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "../styles/HomeNewArrivals.css";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 function NewArrivals() {
   const [sneakers, setSneakers] = useState([]);
   const [loading, setLoading] = useState(true);
   const location = useLocation();
   const [showLoading, setShowLoading] = useState(false);
-
+  const navigate = useNavigate();  // useNavigate hook for navigation
   useEffect(() => {
     let endpoint = "https://m8ykv8u2l4.execute-api.us-east-1.amazonaws.com/prod/products/newArrivals";
     if (location.pathname.startsWith("/products/")) {
@@ -47,7 +47,7 @@ function NewArrivals() {
     if (sneakers.length === 0) {
       const timeoutId = setTimeout(() => {
         window.location.reload();
-      }, 3000);
+      }, 9000);
   
       // Clear timeout when component is unmounted or if condition changes
       return () => clearTimeout(timeoutId);
@@ -70,48 +70,55 @@ function NewArrivals() {
         })
         .join(' ');
 }
-  return (
-    <div className="container popular-releases-container">
-      <div className="d-flex justify-content-between align-items-center">
-        <h3 className="popularReleasesTitle">{title}</h3>
-        <Link
-          to={viewAllLink}
-          className="viewa"
-        >
-          <span className="view-all-text">
-            View All <i className="bi bi-arrow-right-short"></i>
-          </span>
-        </Link>
-      </div>
-    
-        <div className="row sneaker-cards">
-          {sneakers.map((sneaker, index) => (
-            <div
-              className="col-xxl-4 col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12"
-              key={index}
-            >
-              <Link
-                to={`/products/${sneaker.id}`}
-                style={{ textDecoration: "none" }}
-              >
-                <div className="card newarrivalcards">
-                  <img
-                    src={sneaker.photo}
-                    className="card-img-top"
-                    alt={sneaker.name}
-                  />
-                  <div className="card-body">
-                    <p className="card-text"> {sneaker.demographic === "WOMEN" ? capitalizeWords(`WMNS ${sneaker.name}`) : 
-  (sneaker.demographic === "KID" ? capitalizeWords(`GS ${sneaker.name}`) : capitalizeWords(sneaker.name))}</p>
-                  </div>
-                </div>
-              </Link>
-            </div>
-          ))}
-        </div>
-   
-    </div>
-  );
-}
+const handleSneakerClick = (sneakerId) => {
+  // Navigate to the sneaker's page
+  navigate(`/products/${sneakerId}`);
 
+  // Scroll to the top of the page
+  window.scrollTo(0, 0);
+};
+return (
+  <div className="container popular-releases-container">
+    <div className="d-flex justify-content-between align-items-center">
+      <h3 className="popularReleasesTitle">{title}</h3>
+      <Link to={viewAllLink} className="viewa">
+        <span className="view-all-text">
+          View All <i className="bi bi-arrow-right-short"></i>
+        </span>
+      </Link>
+    </div>
+  
+    <div className="row sneaker-cards">
+      {sneakers.length === 0 ? (
+          <h4>Loading...</h4>
+        
+      ) : (
+        sneakers.map((sneaker, index) => (
+          <div
+            className="col-xxl-4 col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12"
+            key={index}
+          >
+            <div
+              onClick={() => handleSneakerClick(sneaker.id)}
+              style={{ cursor: 'pointer', textDecoration: "none" }}
+            >
+              <div className="card newarrivalcards">
+                <img
+                  src={sneaker.photo}
+                  className="card-img-top cardimg"
+                  alt={sneaker.name}
+                />
+                <div className="card-body">
+                  <p className="card-text">{sneaker.demographic === "WOMEN" ? capitalizeWords(`WMNS ${sneaker.name}`) : 
+                    (sneaker.demographic === "KID" ? capitalizeWords(`GS ${sneaker.name}`) : capitalizeWords(sneaker.name))}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))
+      )}
+    </div>
+  </div>
+);
+        }
 export default NewArrivals;
