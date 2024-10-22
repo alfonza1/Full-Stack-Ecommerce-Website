@@ -4,7 +4,7 @@
 
 <p align="center">
   <a href="http://snkrs-official-ui.s3-website-us-east-1.amazonaws.com/">
-    <img src="https://alfonzasportfolio.s3.amazonaws.com/SNKRSPhoto.png" alt="SNKRS Website Screenshot" width="700" />
+    <img src="https://alfonzasportfolio.s3.amazonaws.com/assets/SNKRSPhoto.png" alt="SNKRS Website Screenshot" width="700" />
   </a>
 </p>
 
